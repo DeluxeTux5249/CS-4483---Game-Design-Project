@@ -35,9 +35,10 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             animator.SetBool("isWalking", true);
-        }
 
-        // determine direction
+            // determine direction
+            gameObject.GetComponent<SpriteRenderer>().flipX = moveInput.x < 0;
+        }
 
 
     }
