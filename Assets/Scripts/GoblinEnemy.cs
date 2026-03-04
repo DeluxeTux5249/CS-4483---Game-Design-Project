@@ -7,8 +7,8 @@ public class GoblinEnemy : MonoBehaviour
     private Transform player;
     private int facingDirection = 1; // 1 for right, -1 for left
     private Animator animator;
-    public float attackRange = 0.01f;
-    public EnemyState enemyState;
+    public float attackRange = 1f;
+    public GoblinEnemyState enemyState;
     public float attackCooldown = 1f;
     public float attackTimer = 0.5f;
     public float playerDetectionRange = 5f;
@@ -19,7 +19,7 @@ public class GoblinEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        ChangeState(EnemyState.Idle);
+        ChangeState(GoblinEnemyState.Idle);
 
     }
 
@@ -30,11 +30,11 @@ public class GoblinEnemy : MonoBehaviour
         {
             attackTimer -= Time.deltaTime;
         }
-        if (enemyState == EnemyState.Chasing)
+        if (enemyState == GoblinEnemyState.Run)
         {
             Chase();
         }
-        else if (enemyState == EnemyState.Attacking)
+        else if (enemyState == GoblinEnemyState.Attack_Right)
         {
             rb.linearVelocity = Vector2.zero;
         }
@@ -73,34 +73,34 @@ public class GoblinEnemy : MonoBehaviour
             if (Vector2.Distance(transform.position, player.transform.position) <= attackRange && attackTimer <= 0)
             {
                 attackTimer = attackCooldown;
-                ChangeState(EnemyState.Attacking);
+                ChangeState(GoblinEnemyState.Attack_Right);
             }
             else if (Vector2.Distance(transform.position, player.position) > attackRange)
             {
-                ChangeState(EnemyState.Chasing);
+                ChangeState(GoblinEnemyState.Run);
             }
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
-            ChangeState(EnemyState.Idle);
+            ChangeState(GoblinEnemyState.Idle);
         }
     }
 
-    void ChangeState(EnemyState state)
+    void ChangeState(GoblinEnemyState state)
     {
-        if (enemyState == EnemyState.Idle)
+        if (enemyState == GoblinEnemyState.Idle)
             animator.SetBool("isIdle", false);
-        else if (enemyState == EnemyState.Chasing)
+        else if (enemyState == GoblinEnemyState.Run)
             animator.SetBool("isChasing", false);
-        else if (enemyState == EnemyState.Attacking)
+        else if (enemyState == GoblinEnemyState.Attack_Right)
             animator.SetBool("isAttacking", false);
         enemyState = state;
-        if (enemyState == EnemyState.Idle)
+        if (enemyState == GoblinEnemyState.Idle)
             animator.SetBool("isIdle", true);
-        else if (enemyState == EnemyState.Chasing)
+        else if (enemyState == GoblinEnemyState.Run)
             animator.SetBool("isChasing", true);
-        else if (enemyState == EnemyState.Attacking)
+        else if (enemyState == GoblinEnemyState.Attack_Right)
             animator.SetBool("isAttacking", true);
     }
 
@@ -110,6 +110,6 @@ public class GoblinEnemy : MonoBehaviour
 public enum GoblinEnemyState
 {
     Idle,
-    Chasing,
-    Attacking,
+    Run,
+    Attack_Right,
 }
