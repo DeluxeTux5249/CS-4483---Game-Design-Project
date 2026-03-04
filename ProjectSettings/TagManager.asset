@@ -50,11 +50,11 @@ TagManager:
   - name: Collision
     uniqueID: 777351101
     locked: 0
-  - name: Clickable Objects
-    uniqueID: 3048028813
-    locked: 0
   - name: Player
     uniqueID: 1490958473
+    locked: 0
+  - name: Clickable Objects
+    uniqueID: 3048028813
     locked: 0
   - name: WalkBehind
     uniqueID: 3916514549
