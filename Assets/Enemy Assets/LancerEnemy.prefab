@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6402139738133129023}
   - component: {fileID: 7806965371477499557}
   - component: {fileID: 8338320943375373422}
+  - component: {fileID: 725246670970007652}
   m_Layer: 0
   m_Name: LancerEnemy
   m_TagString: Untagged
@@ -31,10 +32,11 @@ Transform:
   m_GameObject: {fileID: 1408404708303871820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: 1.12, z: 0}
+  m_LocalPosition: {x: 3.75, y: 2.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4046910767127400990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6076405589789889929
@@ -130,8 +132,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.6928661, y: -0.37719178}
-  m_Radius: 2.6193273
+  m_Offset: {x: -0.031284332, y: -0.36554146}
+  m_Radius: 4.591876
 --- !u!50 &6456192780812596231
 Rigidbody2D:
   serializedVersion: 5
@@ -171,7 +173,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d88cbf8fff7d5438bb3a2acaa1142b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyOverworldLancerMovement
+  attackRange: 3
   enemyState: 0
+  attackCooldown: 1
+  attackTimer: 0.5
+  playerDetectionRange: 5
+  detectionPoint: {fileID: 4046910767127400990}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!95 &7806965371477499557
 Animator:
   serializedVersion: 7
@@ -231,3 +241,46 @@ CapsuleCollider2D:
   m_Offset: {x: 0.10393089, y: -0.35220903}
   m_Size: {x: 0.50213814, y: 0.6106893}
   m_Direction: 0
+--- !u!114 &725246670970007652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408404708303871820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770af0293409cb34890487ec12ac21a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLancerAttack
+--- !u!1 &5671428213026464342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4046910767127400990}
+  m_Layer: 0
+  m_Name: DetectionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4046910767127400990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5671428213026464342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: -0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7844327760910761516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
