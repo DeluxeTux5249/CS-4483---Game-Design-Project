@@ -7,7 +7,7 @@ public class EnemyOverworldLancerMovement : MonoBehaviour
     private Transform player;
     private int facingDirection = 1; // 1 for right, -1 for left
     private Animator animator;
-
+    public float attackRange = 0.1f;
     public EnemyState enemyState;
 
     private void Start()
@@ -22,17 +22,30 @@ public class EnemyOverworldLancerMovement : MonoBehaviour
     {
         if (enemyState == EnemyState.Chasing)
         {
-            if (player.position.x > transform.position.x && facingDirection == -1)
-            {
-                Flip();
-            }
-            else if (player.position.x < transform.position.x && facingDirection == 1)
-            {
-                Flip();
-            }
-            Vector2 direction = (player.position - transform.position).normalized;
-            rb.linearVelocity = direction * 3f;
+            Chase();
         }
+        else if (enemyState == EnemyState.Attacking)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    void Chase()
+    {
+        if (Vector2.Distance(transform.position, player.transform.position) <= attackRange)
+        {
+            ChangeState(EnemyState.Attacking);
+        }
+        else if (player.position.x > transform.position.x && facingDirection == -1)
+        {
+            Flip();
+        }
+        else if (player.position.x < transform.position.x && facingDirection == 1)
+        {
+            Flip();
+        }
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.linearVelocity = direction * 3f;
     }
 
     void Flip()
@@ -71,11 +84,15 @@ public class EnemyOverworldLancerMovement : MonoBehaviour
             animator.SetBool("isIdle", false);
         else if (enemyState == EnemyState.Chasing)
             animator.SetBool("isChasing", false);
+        else if (enemyState == EnemyState.Attacking)
+            animator.SetBool("isAttacking", false);
         enemyState = state;
         if (enemyState == EnemyState.Idle)
             animator.SetBool("isIdle", true);
         else if (enemyState == EnemyState.Chasing)
             animator.SetBool("isChasing", true);
+        else if (enemyState == EnemyState.Attacking)
+            animator.SetBool("isAttacking", true);
     }
 
 
@@ -85,4 +102,5 @@ public enum EnemyState
 {
     Idle,
     Chasing,
+    Attacking,
 }
