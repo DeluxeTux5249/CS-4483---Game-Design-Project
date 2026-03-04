@@ -20,21 +20,24 @@ public class GoblinEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         ChangeState(GoblinEnemyState.Idle);
-
     }
 
     void Update()
     {
         CheckForPlayer();
+
         if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
         }
+
         if (enemyState == GoblinEnemyState.Run)
         {
             Chase();
         }
-        else if (enemyState == GoblinEnemyState.Attack_Right)
+        else if (enemyState == GoblinEnemyState.Attack_Right ||
+                 enemyState == GoblinEnemyState.Attack_Down ||
+                 enemyState == GoblinEnemyState.Attack_Up)
         {
             rb.linearVelocity = Vector2.zero;
         }
@@ -42,7 +45,6 @@ public class GoblinEnemy : MonoBehaviour
 
     void Chase()
     {
-
         if (player.position.x > transform.position.x && facingDirection == -1)
         {
             Flip();
@@ -51,6 +53,7 @@ public class GoblinEnemy : MonoBehaviour
         {
             Flip();
         }
+
         Vector2 direction = (player.position - transform.position).normalized;
         rb.linearVelocity = direction * 3.5f;
     }
@@ -65,17 +68,34 @@ public class GoblinEnemy : MonoBehaviour
 
     private void CheckForPlayer()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectionRange, playerLayer);
+        Collider2D[] hitColliders =
+            Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectionRange, playerLayer);
 
         if (hitColliders.Length > 0)
         {
             player = hitColliders[0].transform;
-            if (Vector2.Distance(transform.position, player.transform.position) <= attackRange && attackTimer <= 0)
+
+            float dist = Vector2.Distance(transform.position, player.position);
+
+            if (dist <= attackRange && attackTimer <= 0)
             {
                 attackTimer = attackCooldown;
-                ChangeState(GoblinEnemyState.Attack_Right);
+
+                // choose attack direction
+                if (player.position.y < transform.position.y - 0.2f)
+                {
+                    ChangeState(GoblinEnemyState.Attack_Down);
+                }
+                else if (player.position.y > transform.position.y + 0.2f)
+                {
+                    ChangeState(GoblinEnemyState.Attack_Up);
+                }
+                else
+                {
+                    ChangeState(GoblinEnemyState.Attack_Right);
+                }
             }
-            else if (Vector2.Distance(transform.position, player.position) > attackRange)
+            else if (dist > attackRange)
             {
                 ChangeState(GoblinEnemyState.Run);
             }
@@ -95,16 +115,24 @@ public class GoblinEnemy : MonoBehaviour
             animator.SetBool("isChasing", false);
         else if (enemyState == GoblinEnemyState.Attack_Right)
             animator.SetBool("isAttacking", false);
+        else if (enemyState == GoblinEnemyState.Attack_Down)
+            animator.SetBool("isAttackDown", false);
+        else if (enemyState == GoblinEnemyState.Attack_Up)
+            animator.SetBool("isAttackUp", false);
+
         enemyState = state;
+
         if (enemyState == GoblinEnemyState.Idle)
             animator.SetBool("isIdle", true);
         else if (enemyState == GoblinEnemyState.Run)
             animator.SetBool("isChasing", true);
         else if (enemyState == GoblinEnemyState.Attack_Right)
             animator.SetBool("isAttacking", true);
+        else if (enemyState == GoblinEnemyState.Attack_Down)
+            animator.SetBool("isAttackDown", true);
+        else if (enemyState == GoblinEnemyState.Attack_Up)
+            animator.SetBool("isAttackUp", true);
     }
-
-
 }
 
 public enum GoblinEnemyState
@@ -112,4 +140,6 @@ public enum GoblinEnemyState
     Idle,
     Run,
     Attack_Right,
+    Attack_Down,
+    Attack_Up
 }
