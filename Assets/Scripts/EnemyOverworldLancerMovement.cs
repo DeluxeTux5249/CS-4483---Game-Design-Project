@@ -8,7 +8,7 @@ public class EnemyOverworldLancerMovement : MonoBehaviour
     private int facingDirection = 1; // 1 for right, -1 for left
     private Animator animator;
 
-    private EnemyState enemyState;
+    public EnemyState enemyState;
 
     private void Start()
     {
