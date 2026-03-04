@@ -1,16 +1,20 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 5f;
-
-    [SerializeField]
-    private Rigidbody2D rb;
-
+    // Basic Items for Player Movement
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
+
+    // Dash variables
+    private Vector2 moveDirection;
+    private bool isDashing = false;
+    [SerializeField] private float dashSpeed = 2.0f;
+    [SerializeField] private float dashTime = 0.3f;
 
     private void Start()
     {
@@ -30,8 +34,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
-        
+        if (!isDashing)
+            rb.linearVelocity = moveInput * moveSpeed;
+
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -42,14 +47,32 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput == Vector2.zero)
         {
             animator.SetBool("isWalking", false);
-        } else
+        }
+        else
         {
+            moveDirection = moveInput;
             animator.SetBool("isWalking", true);
 
             // determine direction
             gameObject.GetComponent<SpriteRenderer>().flipX = moveInput.x < 0;
         }
+    }
 
+    // disables player update loop, and adds a constant velocity for a time. 
+    public void Dash(InputAction.CallbackContext context)
+    {
+        isDashing = true;
+        rb.linearVelocity += moveDirection * moveSpeed * dashSpeed;
+        StartCoroutine(EndDashInSeconds(dashTime));
+    }
 
+    // terminates dashing state within the provided number of seconds.
+    private IEnumerator EndDashInSeconds(float delayTime)
+    {
+        // Wait for the specified amount of time
+        yield return new WaitForSeconds(delayTime);
+
+        // This code will run after the delay
+        isDashing = false;
     }
 }
