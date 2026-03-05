@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isKnockedback = false;
     private Coroutine knockbackCoroutine;
 
+    public PlayerCombat playerCombat;
+
     private void Start()
     {
          // Spawn player at door if moving between scenes
@@ -37,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Attack"))
+        {
+            playerCombat.Attack();
+        }
         if (!isDashing && !isKnockedback)   
             rb.linearVelocity = moveInput * moveSpeed;
 

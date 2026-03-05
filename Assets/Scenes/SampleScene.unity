@@ -3641,6 +3641,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3762458998541285597, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
+      propertyPath: playerCombat
+      value: 
+      objectReference: {fileID: 2615102616787190865}
     - target: {fileID: 5837373531498445624, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
       propertyPath: m_Size.y
       value: 0.3434795
@@ -3664,6 +3668,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2615102616787190858}
+    - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2615102616787190865}
   m_SourcePrefab: {fileID: 100100000, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
 --- !u!4 &2615102616787190856 stripped
 Transform:
@@ -3689,6 +3696,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
   maxHealth: 10
   currentHealth: 10
+--- !u!95 &2615102616787190860 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 936077995261625014, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
+  m_PrefabInstance: {fileID: 2615102616787190855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2615102616787190865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615102616787190857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b296f96263eace24abb89acaabbff980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  animator: {fileID: 2615102616787190860}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
