@@ -491,37 +491,6 @@ Transform:
   - {fileID: 1597566917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &504771958
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 504771959}
-  m_Layer: 6
-  m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &504771959
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 504771958}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.304, y: -0.137, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2615102616787190856}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637104883
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +722,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.68, y: 2.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1164161062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164161064}
+  - component: {fileID: 1164161063}
+  m_Layer: 0
+  m_Name: EnemyHealth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1164161063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164161062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12759c87537817345812328d5a085182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  currentHealth: 0
+  maxHealth: 0
+--- !u!4 &1164161064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164161062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15983, y: 1.00406, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3716,92 +3731,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3762458998541285597, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-      propertyPath: playerCombat
-      value: 
-      objectReference: {fileID: 2615102616787190865}
-    - target: {fileID: 5837373531498445624, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-      propertyPath: m_Size.y
-      value: 0.3434795
-      objectReference: {fileID: 0}
-    - target: {fileID: 5837373531498445624, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.2832603
-      objectReference: {fileID: 0}
     - target: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1969196790584092829, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 504771959}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2615102616787190858}
-    - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2615102616787190865}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
 --- !u!4 &2615102616787190856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1969196790584092829, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
   m_PrefabInstance: {fileID: 2615102616787190855}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2615102616787190857 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-  m_PrefabInstance: {fileID: 2615102616787190855}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2615102616787190858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2615102616787190857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc328784aa062e845960850003763aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
-  maxHealth: 10
-  currentHealth: 10
---- !u!95 &2615102616787190860 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 936077995261625014, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
-  m_PrefabInstance: {fileID: 2615102616787190855}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2615102616787190865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2615102616787190857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b296f96263eace24abb89acaabbff980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  animator: {fileID: 2615102616787190860}
-  cooldown: 1
-  knockbackForce: 0
-  attackPoint: {fileID: 504771959}
-  weaponRange: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  damage: 1
-  stunTime: 0
-  knockTime: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3814,3 +3757,4 @@ SceneRoots:
   - {fileID: 364629342}
   - {fileID: 149111932}
   - {fileID: 2122863716}
+  - {fileID: 1164161064}
