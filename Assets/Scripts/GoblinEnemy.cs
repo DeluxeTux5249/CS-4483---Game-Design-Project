@@ -15,6 +15,7 @@ public class GoblinEnemy : MonoBehaviour
     public Transform detectionPoint;
     public LayerMask playerLayer;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

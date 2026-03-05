@@ -332,6 +332,65 @@ Transform:
   - {fileID: 637104884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &275798691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1990808132411583401, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+  m_PrefabInstance: {fileID: 2122863716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &275798698 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+  m_PrefabInstance: {fileID: 2122863716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &275798699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275798691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770af0293409cb34890487ec12ac21a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoblinAttack
+  damage: 1
+  attackPoint: {fileID: 360903798}
+  weaponRange: 0.9
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!1 &360903797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 360903798}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &360903798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360903797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.377, y: -0.237, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 275798698}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &364629340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3502,13 +3561,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: attackRange
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: attackTimer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: attackCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 360903798}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1990808132411583401, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 275798699}
   m_SourcePrefab: {fileID: 100100000, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
 --- !u!1001 &2615102616787190855
 PrefabInstance:

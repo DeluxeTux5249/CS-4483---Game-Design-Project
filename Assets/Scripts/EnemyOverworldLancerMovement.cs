@@ -7,7 +7,7 @@ public class EnemyOverworldLancerMovement : MonoBehaviour
     private Transform player;
     private int facingDirection = 1; // 1 for right, -1 for left
     private Animator animator;
-    public float attackRange = 0.001f;
+    public float attackRange = 0.8f;
     public EnemyState enemyState;
     public float attackCooldown = 1f;
     public float attackTimer = 0.5f;
