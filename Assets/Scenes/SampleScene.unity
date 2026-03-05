@@ -376,6 +376,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   currentHealth: 5
   maxHealth: 5
+--- !u!114 &275798707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275798691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e26d8d885226044b9512f5d47d6cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
 --- !u!1 &360903797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3617,7 +3629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: attackTimer
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: attackCooldown
@@ -3652,6 +3664,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1990808132411583401, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       insertIndex: -1
       addedObject: {fileID: 275798706}
+    - targetCorrespondingSourceObject: {fileID: 1990808132411583401, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 275798707}
   m_SourcePrefab: {fileID: 100100000, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
 --- !u!1001 &2615102616787190855
 PrefabInstance:
@@ -3778,12 +3793,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   animator: {fileID: 2615102616787190860}
   cooldown: 1
+  knockbackForce: 0
   attackPoint: {fileID: 504771959}
   weaponRange: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   damage: 1
+  stunTime: 0
+  knockTime: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -32,6 +32,8 @@ public class GoblinEnemy : MonoBehaviour
 
     void Update()
     {
+        if (enemyState == GoblinEnemyState.Knockback)
+            return;
         CheckForPlayer();
 
         if (attackTimer > 0)
@@ -187,7 +189,7 @@ public class GoblinEnemy : MonoBehaviour
         }
     }
 
-    void ChangeState(GoblinEnemyState state)
+    public void ChangeState(GoblinEnemyState state)
     {
         if (enemyState == GoblinEnemyState.Idle)
             animator.SetBool("isIdle", false);
@@ -237,5 +239,6 @@ public enum GoblinEnemyState
     ReturnToSpawn,
     Attack_Right,
     Attack_Down,
-    Attack_Up
+    Attack_Up,
+    Knockback
 }
