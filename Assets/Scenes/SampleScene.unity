@@ -3524,11 +3524,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.04547
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65025
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3573,6 +3573,10 @@ PrefabInstance:
     - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: attackCooldown
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: postAttackStopTime
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7452361292060233027, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3714,6 +3718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   animator: {fileID: 2615102616787190860}
+  cooldown: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

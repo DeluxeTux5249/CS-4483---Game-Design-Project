@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Animator animator;
-    public float cooldown = 1f;
+    public float cooldown = 1.5f;
     private float timer;
 
     private void Update()

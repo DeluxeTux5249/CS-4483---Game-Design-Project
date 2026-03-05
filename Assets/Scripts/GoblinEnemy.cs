@@ -8,9 +8,12 @@ public class GoblinEnemy : MonoBehaviour
     private Transform player;
     private int facingDirection = 1; // 1 for right, -1 for left
     private Animator animator;
+    private Vector2 spawnPosition;
+    private float lostPlayerTimer = 0f;
+    public float lostPlayerDelay = 1f;
     public float attackRange = 1f;
     public GoblinEnemyState enemyState;
-    public float postAttackStopTime = 2f;
+    public float postAttackStopTime = 0.5f;
     private Coroutine attackPauseCoroutine;
     public float attackCooldown = 1f;
     public float attackTimer = 0.5f;
@@ -23,6 +26,7 @@ public class GoblinEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spawnPosition = transform.position;
         ChangeState(GoblinEnemyState.Idle);
     }
 
@@ -38,6 +42,10 @@ public class GoblinEnemy : MonoBehaviour
         if (enemyState == GoblinEnemyState.Run)
         {
             Chase();
+        }
+        else if (enemyState == GoblinEnemyState.ReturnToSpawn)
+        {
+            MoveToSpawn();
         }
         else if (enemyState == GoblinEnemyState.Attack_Right ||
                  enemyState == GoblinEnemyState.Attack_Down ||
@@ -63,7 +71,10 @@ public class GoblinEnemy : MonoBehaviour
         }
         else
         {
-            ChangeState(GoblinEnemyState.Idle);
+            if (Vector2.Distance(transform.position, spawnPosition) > 0.1f)
+                ChangeState(GoblinEnemyState.ReturnToSpawn);
+            else
+                ChangeState(GoblinEnemyState.Idle);
         }
     }
 
@@ -97,6 +108,24 @@ public class GoblinEnemy : MonoBehaviour
         rb.linearVelocity = direction * 3.5f;
     }
 
+    void MoveToSpawn()
+    {
+        if (spawnPosition.x > transform.position.x && facingDirection == -1)
+            Flip();
+        else if (spawnPosition.x < transform.position.x && facingDirection == 1)
+            Flip();
+
+        Vector2 direction = ((Vector3)spawnPosition - transform.position).normalized;
+        rb.linearVelocity = direction * 3.5f;
+
+        if (Vector2.Distance(transform.position, spawnPosition) <= 0.1f)
+        {
+            transform.position = spawnPosition;
+            rb.linearVelocity = Vector2.zero;
+            ChangeState(GoblinEnemyState.Idle);
+        }
+    }
+
     void Flip()
     {
         facingDirection *= -1;
@@ -115,6 +144,7 @@ public class GoblinEnemy : MonoBehaviour
         if (hitColliders.Length > 0)
         {
             player = hitColliders[0].transform;
+            lostPlayerTimer = 0f;
 
             float dist = Vector2.Distance(transform.position, player.position);
 
@@ -142,8 +172,18 @@ public class GoblinEnemy : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
-            ChangeState(GoblinEnemyState.Idle);
+            lostPlayerTimer += Time.deltaTime;
+            if (lostPlayerTimer >= lostPlayerDelay)
+            {
+                player = null;
+                if (Vector2.Distance(transform.position, spawnPosition) > 0.1f)
+                    ChangeState(GoblinEnemyState.ReturnToSpawn);
+                else
+                {
+                    rb.linearVelocity = Vector2.zero;
+                    ChangeState(GoblinEnemyState.Idle);
+                }
+            }
         }
     }
 
@@ -151,7 +191,7 @@ public class GoblinEnemy : MonoBehaviour
     {
         if (enemyState == GoblinEnemyState.Idle)
             animator.SetBool("isIdle", false);
-        else if (enemyState == GoblinEnemyState.Run)
+        else if (enemyState == GoblinEnemyState.Run || enemyState == GoblinEnemyState.ReturnToSpawn)
             animator.SetBool("isChasing", false);
         else if (enemyState == GoblinEnemyState.Attack_Right)
             animator.SetBool("isAttacking", false);
@@ -164,7 +204,7 @@ public class GoblinEnemy : MonoBehaviour
 
         if (enemyState == GoblinEnemyState.Idle)
             animator.SetBool("isIdle", true);
-        else if (enemyState == GoblinEnemyState.Run)
+        else if (enemyState == GoblinEnemyState.Run || enemyState == GoblinEnemyState.ReturnToSpawn)
             animator.SetBool("isChasing", true);
         else if (enemyState == GoblinEnemyState.Attack_Right)
         {
@@ -194,6 +234,7 @@ public enum GoblinEnemyState
 {
     Idle,
     Run,
+    ReturnToSpawn,
     Attack_Right,
     Attack_Down,
     Attack_Up
