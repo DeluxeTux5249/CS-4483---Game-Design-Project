@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -9,6 +10,8 @@ public class GoblinEnemy : MonoBehaviour
     private Animator animator;
     public float attackRange = 1f;
     public GoblinEnemyState enemyState;
+    public float postAttackStopTime = 2f;
+    private Coroutine attackPauseCoroutine;
     public float attackCooldown = 1f;
     public float attackTimer = 0.5f;
     public float playerDetectionRange = 5f;
@@ -44,6 +47,41 @@ public class GoblinEnemy : MonoBehaviour
         }
     }
 
+    private IEnumerator EndAttackPause(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        attackPauseCoroutine = null;
+        attackTimer = attackCooldown;
+
+        if (player != null)
+        {
+            float dist = Vector2.Distance(transform.position, player.position);
+            if (dist > attackRange)
+                ChangeState(GoblinEnemyState.Run);
+            else
+                ChangeState(GoblinEnemyState.Idle);
+        }
+        else
+        {
+            ChangeState(GoblinEnemyState.Idle);
+        }
+    }
+
+    public void StartPostHitIdle()
+    {
+        if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
+
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isAttackDown", false);
+        animator.SetBool("isAttackUp", false);
+        animator.SetBool("isChasing", false);
+        animator.SetBool("isIdle", true);
+        enemyState = GoblinEnemyState.Idle;
+        rb.linearVelocity = Vector2.zero;
+
+        attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
+    }
+
     void Chase()
     {
         if (player.position.x > transform.position.x && facingDirection == -1)
@@ -69,6 +107,8 @@ public class GoblinEnemy : MonoBehaviour
 
     private void CheckForPlayer()
     {
+        if (attackPauseCoroutine != null)
+            return;
         Collider2D[] hitColliders =
             Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectionRange, playerLayer);
 
@@ -82,7 +122,6 @@ public class GoblinEnemy : MonoBehaviour
             {
                 attackTimer = attackCooldown;
 
-                // choose attack direction
                 if (player.position.y < transform.position.y - 0.2f)
                 {
                     ChangeState(GoblinEnemyState.Attack_Down);
@@ -96,7 +135,7 @@ public class GoblinEnemy : MonoBehaviour
                     ChangeState(GoblinEnemyState.Attack_Right);
                 }
             }
-            else if (dist > attackRange)
+            else if (dist > attackRange && (enemyState != GoblinEnemyState.Attack_Up || enemyState != GoblinEnemyState.Attack_Down || enemyState != GoblinEnemyState.Attack_Right))
             {
                 ChangeState(GoblinEnemyState.Run);
             }
@@ -128,11 +167,26 @@ public class GoblinEnemy : MonoBehaviour
         else if (enemyState == GoblinEnemyState.Run)
             animator.SetBool("isChasing", true);
         else if (enemyState == GoblinEnemyState.Attack_Right)
+        {
             animator.SetBool("isAttacking", true);
+            rb.linearVelocity = Vector2.zero;
+            if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
+            attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
+        }
         else if (enemyState == GoblinEnemyState.Attack_Down)
+        {
             animator.SetBool("isAttackDown", true);
+            rb.linearVelocity = Vector2.zero;
+            if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
+            attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
+        }
         else if (enemyState == GoblinEnemyState.Attack_Up)
+        {
             animator.SetBool("isAttackUp", true);
+            rb.linearVelocity = Vector2.zero;
+            if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
+            attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
+        }
     }
 }
 

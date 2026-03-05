@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 2.0f;
     [SerializeField] private float dashTime = 0.3f;
 
+    private bool isKnockedback = false;
+    private Coroutine knockbackCoroutine;
+
     private void Start()
     {
          // Spawn player at door if moving between scenes
@@ -34,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDashing)
+        if (!isDashing && !isKnockedback)   
             rb.linearVelocity = moveInput * moveSpeed;
 
     }
@@ -74,5 +77,27 @@ public class PlayerMovement : MonoBehaviour
 
         // This code will run after the delay
         isDashing = false;
+    }
+
+    public void Knockback(Transform enemy, float force, float stunTime)
+    {
+        Vector2 direction = (transform.position - enemy.position).normalized;
+        if (knockbackCoroutine != null) StopCoroutine(knockbackCoroutine);
+        knockbackCoroutine = StartCoroutine(ApplyKnockback(direction * force, stunTime));
+    }
+
+    private IEnumerator ApplyKnockback(Vector2 velocity, float duration)
+    {
+        isKnockedback = true;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            rb.linearVelocity = velocity;
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        rb.linearVelocity = Vector2.zero;
+        isKnockedback = false;
+        knockbackCoroutine = null;
     }
 }

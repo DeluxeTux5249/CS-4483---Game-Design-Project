@@ -360,6 +360,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  knockbackForce: 5
+  StunTime: 0.25
 --- !u!1 &360903797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3566,11 +3568,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: attackTimer
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3287838356297242995, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: attackCooldown
-      value: 2
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452361292060233027, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.377
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452361292060233027, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.281
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
