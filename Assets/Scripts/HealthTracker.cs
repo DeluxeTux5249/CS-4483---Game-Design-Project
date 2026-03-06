@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthTracker : MonoBehaviour
 {
@@ -47,7 +49,15 @@ public class HealthTracker : MonoBehaviour
     }
 
     // logic to resolve on death
-    private void Die() { 
-        gameObject.SetActive(false);
+    private void Die() {
+        GetComponent<SpriteRenderer>().enabled = false;
+        StartCoroutine(ReturnToTitle());
     }
+
+    private IEnumerator ReturnToTitle()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Title");
+    }
+
 }

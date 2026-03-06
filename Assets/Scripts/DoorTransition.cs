@@ -18,10 +18,4 @@ public class Door : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad);
         }
     }
-
-    public void LoadScene(string sceneToLoad)
-    {
-        // Load the target scene
-        SceneManager.LoadScene(sceneToLoad);
-    }
 }
