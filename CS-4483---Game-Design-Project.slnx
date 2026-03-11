@@ -1,3 +1,5 @@
 ﻿<Solution>
+  <Project Path="XNodeEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="XNode.csproj" />
 </Solution>
