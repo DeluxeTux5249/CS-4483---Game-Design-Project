@@ -10,22 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 15003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: DefaultProfile
+  m_Name: Windows
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.Build.Profile.BuildProfile
   m_AssetVersion: 1
   m_BuildTarget: 19
   m_Subtarget: 2
   m_PlatformId: 4e3c793746204150860bf175a9a41a05
   m_PlatformBuildProfile:
-    rid: 975238312820211952
-  m_OverrideGlobalSceneList: 1
-  m_Scenes:
-  - m_enabled: 1
-    m_path: Assets/Scenes/DungeonLayout.unity
-  - m_enabled: 1
-    m_path: Assets/Scenes/RandomPuzzleBuild.unity
-  - m_enabled: 1
-    m_path: Assets/Scenes/Overworld.unity
+    rid: 7830766057022292123
+  m_OverrideGlobalSceneList: 0
+  m_Scenes: []
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
@@ -33,7 +27,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 975238312820211952
+    - rid: 7830766057022292123
       type: {class: WindowsPlatformSettings, ns: UnityEditor.WindowsStandalone, asm: UnityEditor.WindowsStandalone.Extensions}
       data:
         m_Development: 0

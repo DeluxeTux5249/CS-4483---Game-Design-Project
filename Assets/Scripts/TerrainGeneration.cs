@@ -21,7 +21,11 @@ public class TerrainGeneration : MonoBehaviour
 
     [Range(0f, 1f)] public float decorationDensity = 0.025f;
 
+    public GameObject doorPrefab;
+    [Range(0f, 1f)] public float doorChancePerChunk = 0.3f;
+
     private Dictionary<Vector2Int, ChunkData> generatedChunks = new Dictionary<Vector2Int, ChunkData>();
+    private Dictionary<Vector2Int, GameObject> spawnedDoors = new Dictionary<Vector2Int, GameObject>();
     private Vector2Int lastPlayerChunk;
     private System.Random rnd;
 
@@ -29,6 +33,7 @@ public class TerrainGeneration : MonoBehaviour
     {
         public Dictionary<Vector2Int, int> grassIndices = new Dictionary<Vector2Int, int>();
         public Dictionary<Vector2Int, int> decorations = new Dictionary<Vector2Int, int>();
+        public Vector2Int? doorLocalPos = null; // null = no door in this chunk
     }
 
     private void Start()
@@ -111,6 +116,36 @@ public class TerrainGeneration : MonoBehaviour
         }
 
         generatedChunks[chunkCoord] = data;
+
+        // Roll to see if this chunk gets a door
+        var chunkRnd = new System.Random(seed ^ (chunkCoord.x * 92837111) ^ (chunkCoord.y * 689287499));
+        if (doorPrefab != null && chunkRnd.NextDouble() < doorChancePerChunk)
+        {
+            // Pick a random interior tile for the door
+            int lx = chunkRnd.Next(2, chunkSize - 2);
+            int ly = chunkRnd.Next(2, chunkSize - 2);
+            data.doorLocalPos = new Vector2Int(lx, ly);
+            SpawnDoor(chunkCoord, lx, ly);
+        }
+    }
+
+    private void SpawnDoor(Vector2Int chunkCoord, int lx, int ly)
+    {
+        int wx = chunkCoord.x * chunkSize + lx;
+        int wy = chunkCoord.y * chunkSize + ly;
+        Vector3 worldPos = new Vector3(wx + 0.5f, wy + 0.5f, 0);
+
+        // Don't spawn if a hand-placed dungeon entrance exists nearby
+        foreach (var existing in FindObjectsByType<Door>(FindObjectsSortMode.None))
+        {
+            if (Vector3.Distance(existing.transform.position, worldPos) < chunkSize * 0.5f)
+                return;
+        }
+
+        GameObject door = Instantiate(doorPrefab, worldPos, Quaternion.identity);
+
+
+        spawnedDoors[chunkCoord] = door;
     }
 
     private void RenderChunk(Vector2Int chunkCoord)
@@ -118,6 +153,13 @@ public class TerrainGeneration : MonoBehaviour
         ChunkData data = generatedChunks[chunkCoord];
         int worldOriginX = chunkCoord.x * chunkSize;
         int worldOriginY = chunkCoord.y * chunkSize;
+
+        // Re-spawn door if it had one but the GameObject is gone
+        if (data.doorLocalPos.HasValue && doorPrefab != null &&
+            (!spawnedDoors.ContainsKey(chunkCoord) || spawnedDoors[chunkCoord] == null))
+        {
+            SpawnDoor(chunkCoord, data.doorLocalPos.Value.x, data.doorLocalPos.Value.y);
+        }
 
         foreach (var entry in data.decorations)
         {
