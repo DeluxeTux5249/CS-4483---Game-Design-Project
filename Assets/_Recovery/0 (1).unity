@@ -485,6 +485,7 @@ Transform:
   - {fileID: 1320280486}
   - {fileID: 637104884}
   - {fileID: 1100788801}
+  - {fileID: 1978666941}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &159398263
@@ -524,6 +525,8 @@ MonoBehaviour:
   seed: 0
   randomSeed: 1
   decorationDensity: 0.2
+  doorPrefab: {fileID: 302626844864865815, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+  doorChancePerChunk: 0.3
 --- !u!1 &364629340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,17 +1787,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4375345690096196434, guid: 7a9f7a1132bacde41bd73f81c29046ef, type: 3}
-      propertyPath: hidePanelPos.y
-      value: -600
-      objectReference: {fileID: 0}
-    - target: {fileID: 4375345690096196434, guid: 7a9f7a1132bacde41bd73f81c29046ef, type: 3}
-      propertyPath: showPanelPos.y
-      value: -100
-      objectReference: {fileID: 0}
     - target: {fileID: 5004859970674124282, guid: 7a9f7a1132bacde41bd73f81c29046ef, type: 3}
       propertyPath: m_Name
       value: DialogueSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004859970674124282, guid: 7a9f7a1132bacde41bd73f81c29046ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7227538995192545084, guid: 7a9f7a1132bacde41bd73f81c29046ef, type: 3}
       propertyPath: m_Pivot.x
@@ -1875,10 +1874,6 @@ PrefabInstance:
     - target: {fileID: 7227538995192545084, guid: 7a9f7a1132bacde41bd73f81c29046ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8474911488464321371, guid: 7a9f7a1132bacde41bd73f81c29046ef, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -4834,6 +4829,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9094208859029238694, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4926,7 +4925,7 @@ Transform:
   m_GameObject: {fileID: 1711374993}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.63, y: 3.55, z: 0}
+  m_LocalPosition: {x: 3.65, y: 3.45, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4992,6 +4991,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   sceneToLoad: DungeonLayout
   spawnPosition: {x: -8.91, y: 6.65, z: 0}
+--- !u!1001 &1978666940
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 159398262}
+    m_Modifications:
+    - target: {fileID: 302626844864865815, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_Name
+      value: PuzzleEntrance
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+--- !u!4 &1978666941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3693844982744128613, guid: e7a1aadf6fb8ec440b8fe2e24e1d9f9a, type: 3}
+  m_PrefabInstance: {fileID: 1978666940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014062641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5138,6 +5199,10 @@ PrefabInstance:
     - target: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538437896769539039, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

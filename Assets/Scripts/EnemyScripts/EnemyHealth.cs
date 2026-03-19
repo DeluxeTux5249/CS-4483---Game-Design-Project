@@ -18,19 +18,29 @@ public class EnemyHealth : MonoBehaviour
 
     }
 
-    public void ChangeHealth(int amount)
-    {
-        if (healthBar != null) healthBar.SetHealth(currentHealth);
-        currentHealth += amount;
-        if (currentHealth > maxHealth) {
-            currentHealth = maxHealth;
-            if (healthBar != null) healthBar.SetHealth(currentHealth);
-        }
-        else if (currentHealth <= 0)
+        public void ChangeHealth(int amount)
         {
-            Destroy(gameObject);
+            currentHealth += amount;
+
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+            else if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+            }
+
+            if (healthBar != null)
+            {
+                healthBar.SetHealth(currentHealth);
+            }
+
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
-    } 
 
 
 }
