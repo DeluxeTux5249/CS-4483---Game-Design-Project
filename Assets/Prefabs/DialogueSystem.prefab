@@ -445,7 +445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -600}
+  m_AnchoredPosition: {x: 0, y: -800}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4375345690096196434
@@ -471,7 +471,7 @@ MonoBehaviour:
   panelOpen: {fileID: 8300000, guid: 77e42874fa611456fbed145154ca69d8, type: 3}
   panelClose: {fileID: 8300000, guid: b6022e32881ae42d99241dbf31a81d5d, type: 3}
   showPanelPos: {x: 0, y: -100, z: 0}
-  hidePanelPos: {x: 0, y: -600, z: 0}
+  hidePanelPos: {x: 0, y: -800, z: 0}
   panelAnimationTime: 0.5
   textSpeed: 0.01
 --- !u!82 &3012511305300816211
