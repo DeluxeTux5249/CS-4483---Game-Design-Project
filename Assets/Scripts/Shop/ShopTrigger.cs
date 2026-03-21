@@ -5,6 +5,7 @@ public class ShopTrigger : MonoBehaviour
 {
     public Button shopButton;
     public GameObject shopCanvas;
+    public ShopManger shopManger;
     private PlayerMovement playerMovement;
 
     public void OpenShop()
@@ -19,6 +20,11 @@ public class ShopTrigger : MonoBehaviour
         shopCanvas.SetActive(false);
         if (playerMovement != null)
             playerMovement.canMove = true;
+    }
+
+    public void CloseShopTemp()
+    {
+        shopCanvas.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,11 +47,33 @@ public class ShopTrigger : MonoBehaviour
         }
     }
 
+    public void gotoPreviewMode()
+    {
+        shopButton.gameObject.SetActive(false);
+    }
+
+    public void gotoNormalMode()
+    {
+        shopButton.gameObject.SetActive(true);
+    }
+
     private void Update()
     {
-        if (shopCanvas != null && shopCanvas.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (shopManger != null && shopManger.isViewingZone && shopManger.previewObject != null)
         {
-            CloseShop();
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorld.z = 0f;
+            shopManger.UpdatePreview(mouseWorld);
+
+            if (Input.GetMouseButtonDown(0))
+                shopManger.TryPlace(mouseWorld);
         }
+
+        if (!Input.GetKeyDown(KeyCode.Escape)) return;
+
+        if (shopCanvas != null && shopCanvas.activeSelf)
+            CloseShop();
+        else if (shopManger != null && shopManger.isViewingZone)
+            shopManger.CancelZoneView();
     }
 }

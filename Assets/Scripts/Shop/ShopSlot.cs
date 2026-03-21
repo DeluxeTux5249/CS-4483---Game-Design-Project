@@ -1,14 +1,17 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShopSlot : MonoBehaviour
+public class ShopSlot : MonoBehaviour, IPointerClickHandler
 {
     public ItemSO itemSO;
     public TMP_Text itemNameText;
     public TMP_Text priceText;
     public Image itemIcon;
+    public ShopManger shopManager;
 
+    [HideInInspector] public int slotIndex;
     private int price;
 
     private void Start()
@@ -20,11 +23,14 @@ public class ShopSlot : MonoBehaviour
     public void SetItem(ItemSO item, int price)
     {
         this.itemSO = item;
-        print(item.itemName + " " + price);
         itemNameText.text = this.itemSO.itemName;
         itemIcon.sprite = this.itemSO.icon;
         this.price = price;
         priceText.text = price.ToString();
-        print(itemNameText.text + " " + this.price);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        shopManager.BuySelected(slotIndex);
     }
 }
