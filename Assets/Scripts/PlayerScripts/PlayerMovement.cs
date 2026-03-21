@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isKnockedback = false;
     private Coroutine knockbackCoroutine;
 
+    public bool canMove = true;
+
     public PlayerCombat playerCombat;
 
     private void Start()
@@ -39,11 +41,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         if (Input.GetButtonDown("Attack"))
         {
             playerCombat.Attack();
         }
-        if (!isDashing && !isKnockedback)   
+        if (!isDashing && !isKnockedback)
             rb.linearVelocity = moveInput * moveSpeed;
 
     }
