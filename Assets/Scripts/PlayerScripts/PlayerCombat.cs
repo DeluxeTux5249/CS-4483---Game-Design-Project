@@ -12,6 +12,12 @@ public class PlayerCombat : MonoBehaviour
     public float stunTime = 0.5f;
     public float knockTime = 0.5f;
     private float timer;
+    private PlayerInventory playerInventory;
+
+    private void Awake()
+    {
+        playerInventory = GetComponent<PlayerInventory>();
+    }
 
     private void Update()
     {
@@ -23,13 +29,17 @@ public class PlayerCombat : MonoBehaviour
 
     public void Attack()
     {
+        if (playerInventory != null && playerInventory.IsInventoryOpen)
+        {
+            return;
+        }
         if(timer <= 0)
         {
             animator.SetBool("isAttacking", true);
 
             timer = cooldown;
         }
-        animator.SetBool("isAttacking", true);
+    //    animator.SetBool("isAttacking", true);
     }
 
     public void DealDamage()

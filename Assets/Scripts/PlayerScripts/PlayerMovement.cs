@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInventory))]
 public class PlayerMovement : MonoBehaviour
 {
     // Basic Items for Player Movement
@@ -23,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerCombat playerCombat;
 
+    // Inventory variables
+    private PlayerInventory playerInventory;
+    private Keyboard keyboard;
+
+
     private void Start()
     {
          // Spawn player at door if moving between scenes
@@ -36,14 +42,22 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.DeleteKey("SpawnY");
     }
         animator = GetComponent<Animator>();
+        playerInventory = GetComponent<PlayerInventory>();
+        keyboard = Keyboard.current;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!canMove)
+        if (keyboard != null && (keyboard.iKey.wasPressedThisFrame || keyboard.tabKey.wasPressedThisFrame))
+        {
+            playerInventory.ToggleInventory();
+        }
+
+        if (!canMove || (playerInventory != null && playerInventory.IsInventoryOpen)) 
         {
             rb.linearVelocity = Vector2.zero;
+            animator.SetBool("isWalking", false);
             return;
         }
         if (Input.GetButtonDown("Attack"))
@@ -57,6 +71,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        // disable movement when inventory is open
+        if (playerInventory != null && playerInventory.IsInventoryOpen)
+        {
+            moveInput = Vector2.zero;
+            animator.SetBool("isWalking", false);
+            return;
+        }
+
         moveInput = context.ReadValue<Vector2>();
 
         // determine if moving
@@ -77,6 +99,12 @@ public class PlayerMovement : MonoBehaviour
     // disables player update loop, and adds a constant velocity for a time. 
     public void Dash(InputAction.CallbackContext context)
     {
+        // Disable is inventory is open
+        if (playerInventory != null && playerInventory.IsInventoryOpen)
+        {
+            return;
+        }
+
         isDashing = true;
         rb.linearVelocity += moveDirection * moveSpeed * dashSpeed;
         StartCoroutine(EndDashInSeconds(dashTime));
