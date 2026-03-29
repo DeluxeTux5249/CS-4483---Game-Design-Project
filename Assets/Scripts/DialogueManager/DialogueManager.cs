@@ -147,6 +147,13 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSimple()
     {
+        // display ALL sentences if there are multiple
+        if (sentences.Count > 0)
+        {
+            DisplaySentence();
+            return;
+        }
+
         SimpleDialogueNode simpleNode = curNode as SimpleDialogueNode;
             
         NodePort port = simpleNode.GetOutputPort("nextNode").Connection;
