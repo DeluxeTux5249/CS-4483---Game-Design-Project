@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
 
 public class TerrainGeneration : MonoBehaviour
 {
+    public GameObject goblin_house;
     public Tilemap groundTilemap;
     public Tilemap decorationTilemap;
 
@@ -20,6 +22,10 @@ public class TerrainGeneration : MonoBehaviour
     public int seed = 0;
     public bool randomSeed = true;
     [Range(0f, 1f)] public float decorationDensity = 0.025f;
+
+    [Header("Goblin Houses")]
+    public int goblinHouseCount = 4;
+    public int edgePadding = 2;
 
     private System.Random rnd;
 
@@ -39,6 +45,7 @@ public class TerrainGeneration : MonoBehaviour
         rnd = new System.Random(seed);
 
         GenerateMap();
+        PlaceGoblinHouses();
         PlacePlayerAtCenter();
     }
 
@@ -85,6 +92,43 @@ public class TerrainGeneration : MonoBehaviour
         groundTilemap.CompressBounds();
         if (decorationTilemap != null)
             decorationTilemap.CompressBounds();
+    }
+
+    private void PlaceGoblinHouses()
+    {
+        if (goblin_house == null || groundTilemap == null) return;
+
+        HashSet<Vector2Int> usedPositions = new HashSet<Vector2Int>();
+
+        int minX = StartX + edgePadding;
+        int maxX = StartX + mapWidth - edgePadding;
+        int minY = StartY + edgePadding;
+        int maxY = StartY + mapHeight - edgePadding;
+
+        for (int i = 0; i < goblinHouseCount; i++)
+        {
+            Vector2Int tilePos2D;
+            int safety = 0;
+
+            do
+            {
+                int x = rnd.Next(minX, maxX);
+                int y = rnd.Next(minY, maxY);
+                tilePos2D = new Vector2Int(x, y);
+                safety++;
+            }
+            while (
+                (usedPositions.Contains(tilePos2D) || tilePos2D == Vector2Int.zero) &&
+                safety < 100
+            );
+
+            usedPositions.Add(tilePos2D);
+
+            Vector3Int cellPos = new Vector3Int(tilePos2D.x, tilePos2D.y, 0);
+            Vector3 worldPos = groundTilemap.GetCellCenterWorld(cellPos);
+
+            Instantiate(goblin_house, worldPos, Quaternion.identity);
+        }
     }
 
     private void PlacePlayerAtCenter()
