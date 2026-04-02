@@ -137,7 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123264df8988689468e21e542e1c904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnGoblin
-  goblin: {fileID: 1126208379828682453, guid: f71f57388ab95104195b7bef616c32b7, type: 3}
+  goblin_builing: {fileID: 1124588400940275596, guid: 4bc34629e02aefb499007399d68a3fb0, type: 3}
+  goblin: {fileID: 3327448149867847348, guid: 7748bb9a38144904f887c1286f9cfce3, type: 3}
 --- !u!58 &6840798876362474027
 CircleCollider2D:
   m_ObjectHideFlags: 0

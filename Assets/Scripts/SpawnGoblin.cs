@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpawnGoblin : MonoBehaviour
 {
+    public GameObject goblin_builing;
     public GameObject goblin;
 
     IEnumerator Start()
@@ -27,9 +28,13 @@ public class SpawnGoblin : MonoBehaviour
         {
             yield return new WaitForSeconds(300f);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
                 SpawnOneGoblin();
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                SpawnGoblinToAttackBuilding();
             }
         }
     }
@@ -40,6 +45,15 @@ public class SpawnGoblin : MonoBehaviour
 
         Vector3 pos = transform.position;
         GameObject go = Instantiate(goblin);
+        go.transform.position = new Vector3(pos.x, pos.y + transform.localScale.y / 2f, pos.z);
+        go.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    void SpawnGoblinToAttackBuilding()
+    {
+        if (goblin_builing == null) return;
+        Vector3 pos = transform.position;
+        GameObject go = Instantiate(goblin_builing);
         go.transform.position = new Vector3(pos.x, pos.y + transform.localScale.y / 2f, pos.z);
         go.transform.localScale = new Vector3(1, 1, 1);
     }

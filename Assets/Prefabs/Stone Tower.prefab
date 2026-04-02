@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7184156228753138004}
   - component: {fileID: 631937022663503890}
   - component: {fileID: 2623466944711769566}
-  m_Layer: 0
+  - component: {fileID: -437946216549958604}
+  m_Layer: 8
   m_Name: Stone Tower
-  m_TagString: Untagged
+  m_TagString: Player Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,3 +143,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0037620068, y: -0.55324197}
   m_Size: {x: 0.9717097, y: 1.22}
   m_Direction: 0
+--- !u!114 &-437946216549958604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6068673597809598957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae5086b3cded544aa6ce6faf15fe63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingHealth
+  maxHealth: 20

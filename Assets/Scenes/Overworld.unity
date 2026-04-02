@@ -3189,9 +3189,10 @@ GameObject:
   - component: {fileID: 1116676327}
   - component: {fileID: 1116676326}
   - component: {fileID: 1116676328}
-  m_Layer: 0
+  - component: {fileID: 1116676329}
+  m_Layer: 8
   m_Name: Archery
-  m_TagString: Untagged
+  m_TagString: Player Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3304,9 +3305,22 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0031636711, y: -0.098787576}
-  m_Size: {x: 1.6665213, y: 2.281347}
+  m_Offset: {x: 0.011578091, y: -0.1880867}
+  m_Size: {x: 1.6960044, y: 2.05474}
   m_Direction: 0
+--- !u!114 &1116676329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116676325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae5086b3cded544aa6ce6faf15fe63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingHealth
+  maxHealth: 10
 --- !u!114 &1132055022 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8841886222484637637, guid: 243e389373d0e4d41ae0074bd58f18ea, type: 3}
