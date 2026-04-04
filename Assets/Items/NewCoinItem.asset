@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinItem
   itemName: Coin
   description: 
-  icon: {fileID: -1171790437229086565, guid: 3e318ecd0ed984bf191da0a6c9346c92, type: 3}
+  icon: {fileID: -8767686902441073548, guid: c250fe3589b254cc58ff3ecd84584a24, type: 3}
   maxStackSize: 999
+  pickupPrefab: {fileID: 4677616499565559306, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
   coinValue: 1
