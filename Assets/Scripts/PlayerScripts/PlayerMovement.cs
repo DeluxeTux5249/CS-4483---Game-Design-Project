@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
             playerInventory.ToggleInventory();
         }
 
+        HandleHotbarNumberKeys();
+
         if (!canMove || (playerInventory != null && playerInventory.IsInventoryOpen)) 
         {
             rb.linearVelocity = Vector2.zero;
@@ -140,5 +142,46 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         isKnockedback = false;
         knockbackCoroutine = null;
+    }
+
+    private void HandleHotbarNumberKeys()
+    {
+        if (keyboard == null || playerInventory == null)
+        {
+            return;
+        }
+
+        if (keyboard.digit1Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(0);
+        }
+        else if (keyboard.digit2Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(1);
+        }
+        else if (keyboard.digit3Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(2);
+        }
+        else if (keyboard.digit4Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(3);
+        }
+        else if (keyboard.digit5Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(4);
+        }
+        else if (keyboard.digit6Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(5);
+        }
+        else if (keyboard.digit7Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(6);
+        }
+        else if (keyboard.digit8Key.wasPressedThisFrame)
+        {
+            playerInventory.SetSelectedSlot(7);
+        }
     }
 }

@@ -35,6 +35,7 @@ public class PlayerInventory : MonoBehaviour
 
     public bool IsInventoryOpen { get; private set; }
     public int SelectedSlotIndex { get; private set; }
+    public int DraggedSlotIndex { get; private set; } = -1;
 
 
     private void Awake()
@@ -185,6 +186,50 @@ public class PlayerInventory : MonoBehaviour
         NotifyInventoryChanged();
     }
 
+    public void HandleLeftClick(int slotIndex)
+    {
+        if (!IsValidSlot(slotIndex))
+        {
+            return;
+        }
+
+        // When the inventory is closed, left click just changes the selected hotbar slot.
+        if (!IsInventoryOpen)
+        {
+            SetSelectedSlot(slotIndex);
+            return;
+        }
+
+        // First click chooses which slot is being moved.
+        if (DraggedSlotIndex < 0)
+        {
+            if (slots[slotIndex].IsEmpty)
+            {
+                SetSelectedSlot(slotIndex);
+                return;
+            }
+
+            DraggedSlotIndex = slotIndex;
+            SetSelectedSlot(slotIndex);
+            NotifyInventoryChanged();
+            return;
+        }
+
+        // Clicking the same slot again cancels the move.
+        if (DraggedSlotIndex == slotIndex)
+        {
+            DraggedSlotIndex = -1;
+            SetSelectedSlot(slotIndex);
+            NotifyInventoryChanged();
+            return;
+        }
+
+        MoveOrSwapSlots(DraggedSlotIndex, slotIndex);
+        DraggedSlotIndex = -1;
+        SetSelectedSlot(slotIndex);
+        NotifyInventoryChanged();
+    }
+
     public void DropOneFromSlot(int slotIndex)
     {
         if (!IsValidSlot(slotIndex))
@@ -213,6 +258,58 @@ public class PlayerInventory : MonoBehaviour
         {
             slots.Add(new InventorySlot());
         }
+    }
+
+    private void MoveOrSwapSlots(int fromIndex, int toIndex)
+    {
+        if (!IsValidSlot(fromIndex) || !IsValidSlot(toIndex))
+        {
+            return;
+        }
+
+        InventorySlot fromSlot = slots[fromIndex];
+        InventorySlot toSlot = slots[toIndex];
+
+        if (fromSlot.IsEmpty)
+        {
+            return;
+        }
+
+        // Move directly into empty slots.
+        if (toSlot.IsEmpty)
+        {
+            toSlot.item = fromSlot.item;
+            toSlot.quantity = fromSlot.quantity;
+            fromSlot.Clear();
+            return;
+        }
+
+        // Merge stacks when the same item is clicked together.
+        if (toSlot.item == fromSlot.item && toSlot.quantity < toSlot.item.maxStackSize)
+        {
+            int availableSpace = toSlot.item.maxStackSize - toSlot.quantity;
+            int amountToMove = Mathf.Min(availableSpace, fromSlot.quantity);
+
+            toSlot.quantity += amountToMove;
+            fromSlot.quantity -= amountToMove;
+
+            if (fromSlot.quantity <= 0)
+            {
+                fromSlot.Clear();
+            }
+
+            return;
+        }
+
+        // Otherwise swap the two slot contents.
+        InventoryItemData tempItem = toSlot.item;
+        int tempQuantity = toSlot.quantity;
+
+        toSlot.item = fromSlot.item;
+        toSlot.quantity = fromSlot.quantity;
+
+        fromSlot.item = tempItem;
+        fromSlot.quantity = tempQuantity;
     }
 
     private bool IsValidSlot(int slotIndex)

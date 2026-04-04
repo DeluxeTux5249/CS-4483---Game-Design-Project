@@ -265,7 +265,10 @@ public class InventoryUI : MonoBehaviour
 
         for (int i = 0; i < slotViews.Count && i < inventory.Slots.Count; i++)
         {
-            slotViews[i].Refresh(inventory.Slots[i], i == inventory.SelectedSlotIndex);
+            slotViews[i].Refresh(
+                inventory.Slots[i],
+                i == inventory.SelectedSlotIndex,
+                i == inventory.DraggedSlotIndex);
         }
     }
 

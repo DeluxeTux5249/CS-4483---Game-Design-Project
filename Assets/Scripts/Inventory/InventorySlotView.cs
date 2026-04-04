@@ -9,6 +9,7 @@ public class InventorySlotView : MonoBehaviour, IPointerClickHandler
     private Text quantityText;
     private Image highlightImage;
     private Button button;
+    private Image slotBackgroundImage;
 
     // inventory data source and the slot index this view represents
     private PlayerInventory inventory;
@@ -21,6 +22,7 @@ public class InventorySlotView : MonoBehaviour, IPointerClickHandler
         quantityText = newQuantityText;
         highlightImage = newHighlightImage;
         button = newButton;
+        slotBackgroundImage = GetComponent<Image>();
     }
 
     public void Initialize(PlayerInventory targetInventory, int index)
@@ -36,7 +38,7 @@ public class InventorySlotView : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void Refresh(InventorySlot slot, bool isSelected)
+    public void Refresh(InventorySlot slot, bool isSelected, bool isBeingMoved)
     {
         // Sync this UI slot with the data from the matching inventory slot.
         bool hasItem = slot != null && !slot.IsEmpty;
@@ -44,7 +46,19 @@ public class InventorySlotView : MonoBehaviour, IPointerClickHandler
         iconImage.enabled = hasItem && slot.item.icon != null;
         iconImage.sprite = hasItem ? slot.item.icon : null;
         quantityText.text = hasItem && slot.quantity > 1 ? slot.quantity.ToString() : "";
-        highlightImage.enabled = isSelected;
+
+        // Normal selected slots use the lighter highlight, and moved slots get a stronger tint.
+        highlightImage.enabled = isSelected || isBeingMoved;
+        highlightImage.color = isBeingMoved
+            ? new Color(0.95f, 0.9f, 0.35f, 0.45f)
+            : new Color(0.42f, 0.95f, 0.8f, 0.36f);
+
+        if (slotBackgroundImage != null)
+        {
+            slotBackgroundImage.color = isBeingMoved
+                ? new Color(0.42f, 0.35f, 0.12f, 0.82f)
+                : new Color(0.25f, 0.31f, 0.67f, 0.66f);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -58,7 +72,7 @@ public class InventorySlotView : MonoBehaviour, IPointerClickHandler
         // Left click selects the slot, right click drops one item while inventory is open.
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            inventory.SetSelectedSlot(slotIndex);
+            inventory.HandleLeftClick(slotIndex);
         }
         else if (eventData.button == PointerEventData.InputButton.Right && inventory.IsInventoryOpen)
         {
