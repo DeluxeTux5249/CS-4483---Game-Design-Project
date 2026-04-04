@@ -17,4 +17,7 @@ public class InventoryItemData : ScriptableObject
     // maximum number of this item allowed in one slot
     [Min(1)]
     public int maxStackSize = 99;
+
+    [Header("World Pickup")]
+    public WorldItemPickup pickupPrefab;
 }

@@ -24,7 +24,7 @@ public class WorldItemPickup : MonoBehaviour
         }
 
         // set the visible world sprite to match the item icon
-        if (spriteRenderer != null && itemData != null && itemData.icon != null)
+        if (spriteRenderer != null && itemData != null && itemData.icon != null && spriteRenderer.GetComponent<Animator>() == null)
         {
             spriteRenderer.sprite = itemData.icon;
         }
@@ -68,6 +68,13 @@ public class WorldItemPickup : MonoBehaviour
             return null;
         }
 
+        if (itemData.pickupPrefab != null)
+        {
+            WorldItemPickup pickupInstance = Object.Instantiate(itemData.pickupPrefab, worldPosition, Quaternion.identity);
+            pickupInstance.SetItemData(itemData, quantity);
+            return pickupInstance;
+        }
+
         // Build a simple pickup object in code when dropping items from the inventory.
         GameObject pickupObject = new GameObject(itemData.itemName + "_Pickup");
         pickupObject.transform.position = worldPosition;
@@ -88,5 +95,21 @@ public class WorldItemPickup : MonoBehaviour
         pickup.spriteRenderer = renderer;
 
         return pickup;
+    }
+
+    public void SetItemData(InventoryItemData newItemData, int newQuantity)
+    {
+        itemData = newItemData;
+        quantity = newQuantity;
+
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+        
+        if (spriteRenderer != null && itemData != null && itemData.icon != null && spriteRenderer.GetComponent<Animator>() == null)
+        {
+            spriteRenderer.sprite = itemData.icon;
+        }
     }
 }
