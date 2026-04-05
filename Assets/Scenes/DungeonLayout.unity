@@ -6339,7 +6339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfb60e4aa524a5488b94e62cabe2724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  sceneToLoad: EndScreen
+  sceneToLoad: DungeonCompleteScene
   spawnPosition: {x: 3, y: 2, z: 0}
 --- !u!1 &848373593
 GameObject:

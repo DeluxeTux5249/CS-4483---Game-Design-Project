@@ -26,6 +26,12 @@ MonoBehaviour:
     m_path: Assets/Scenes/RandomPuzzleBuild.unity
   - m_enabled: 1
     m_path: Assets/Scenes/Overworld.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/EndScreen.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Dungeon2Layout.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Title.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

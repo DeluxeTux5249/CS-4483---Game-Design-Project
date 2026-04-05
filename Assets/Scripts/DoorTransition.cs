@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
     public string sceneToLoad;
     public Vector3 spawnPosition;
 
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
