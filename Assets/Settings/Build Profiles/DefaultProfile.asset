@@ -32,6 +32,8 @@ MonoBehaviour:
     m_path: Assets/Scenes/Dungeon2Layout.unity
   - m_enabled: 1
     m_path: Assets/Scenes/Title.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/DungeonCompleteScene.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
