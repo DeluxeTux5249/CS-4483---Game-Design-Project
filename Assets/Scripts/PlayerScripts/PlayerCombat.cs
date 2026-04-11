@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float weaponRange = 1f;
     public LayerMask enemyLayer;
+    public int baseDamage = 1;
     public int damage = 1;
     public float stunTime = 0.5f;
     public float knockTime = 0.5f;
@@ -26,6 +27,8 @@ public class PlayerCombat : MonoBehaviour
             timer -= Time.deltaTime;
         }
     }
+
+    
 
     public void Attack()
     {
@@ -56,5 +59,64 @@ public class PlayerCombat : MonoBehaviour
     public void finishAttack()
     {
         animator.SetBool("isAttacking", false);
+    }
+
+    private void OnEnable()
+    {
+        // reconnect to the inventory when this component becomes active
+        if (playerInventory == null) playerInventory = GetComponent<PlayerInventory>();
+
+        if (playerInventory != null)
+        {
+            // keep damage in sync when the selected slot or its contents change
+            playerInventory.SelectedSlotChanged += HandleSelectedSlotChanged;
+            playerInventory.InventoryChanged += HandleInventoryChanged;
+        }
+
+        // update damage immediately in case a weapon is already selected
+        RefreshEquippedWeaponDamage();
+    }
+
+    private void OnDisable()
+    {
+        if (playerInventory != null)
+        {
+            // stop listening once this component is disabled to avoid duplicate event hooks
+            playerInventory.SelectedSlotChanged -= HandleSelectedSlotChanged;
+            playerInventory.InventoryChanged -= HandleInventoryChanged;
+        }
+    }
+
+    private void HandleSelectedSlotChanged(int _)
+    {
+        // switching hotbar slots can change which weapon is equipped
+        RefreshEquippedWeaponDamage();
+    }
+
+    private void HandleInventoryChanged()
+    {
+        // moving or removing the equipped item should also refresh damage
+        RefreshEquippedWeaponDamage();
+    }
+
+    private void RefreshEquippedWeaponDamage()
+    {
+        // start from the player's normal damage before applying any weapon bonus
+        damage = baseDamage;
+
+        if (playerInventory == null) return;
+
+        // only the currently selected hotbar item can act as the equipped weapon
+        InventorySlot selectedSlot = playerInventory.GetSelectedSlot();
+        if (selectedSlot == null || selectedSlot.IsEmpty)
+        {
+            return;
+        }
+
+        // weapon items add bonus damage while they are selected
+        WeaponItem equippedWeapon = selectedSlot.item as WeaponItem;
+        if (equippedWeapon == null) return;
+
+        damage += equippedWeapon.damageBonus;
     }
 }

@@ -209,6 +209,7 @@ public class InventoryUI : MonoBehaviour
         iconObject.transform.SetParent(slotObject.transform, false);
 
         Image iconImage = iconObject.AddComponent<Image>();
+        iconImage.preserveAspect = true;
         // icon image displays the item sprite inside the slot
         RectTransform iconRect = iconObject.GetComponent<RectTransform>();
         iconRect.anchorMin = new Vector2(0.5f, 0.5f);
