@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    // lightweight runtime copy of the inventory used when moving between scenes
+    [Serializable]
+    private class SavedSlotData
+    {
+        public InventoryItemData item;
+        public int quantity;
+    }
+
+    private static readonly List<SavedSlotData> savedSlots = new List<SavedSlotData>();
+    private static int savedSelectedSlotIndex;
+    private static bool hasSavedInventory;
+
     // Hotbar slots stay visible, extra rows only show when the inventory is open.
     [SerializeField] private int hotbarSize = 8;
     [SerializeField] private int inventoryRows = 3;
@@ -42,6 +54,8 @@ public class PlayerInventory : MonoBehaviour
     {
         // Create the slot list and connect it to the runtime inventory UI.
         EnsureSlotCapacity();
+        // restore the previous scene's inventory before the UI draws the slots
+        RestoreSavedInventory();
 
         inventoryUI = FindObjectOfType<InventoryUI>();
         if (inventoryUI == null)
@@ -51,7 +65,13 @@ public class PlayerInventory : MonoBehaviour
         }
 
         inventoryUI.Initialize(this);
-        SetSelectedSlot(0);
+        SetSelectedSlot(hasSavedInventory ? savedSelectedSlotIndex : 0);
+    }
+
+    private void OnDestroy()
+    {
+        // keep the current inventory data available for the next scene's player
+        SaveInventoryState();
     }
 
     public bool AddItem(InventoryItemData itemData, int quantity = 1)
@@ -182,6 +202,8 @@ public class PlayerInventory : MonoBehaviour
 
         // store the selected slot and notify the UI
         SelectedSlotIndex = slotIndex;
+        // remember the selected hotbar slot across scene loads
+        savedSelectedSlotIndex = SelectedSlotIndex;
         SelectedSlotChanged?.Invoke(SelectedSlotIndex);
         NotifyInventoryChanged();
     }
@@ -320,10 +342,47 @@ public class PlayerInventory : MonoBehaviour
 
     private void NotifyInventoryChanged()
     {
-        // tells any listening UI that the inventory needs a redraw
+        // save the latest slot data, then tell the UI it needs a redraw
+        SaveInventoryState();
         if (InventoryChanged != null)
         {
             InventoryChanged.Invoke();
+        }
+    }
+
+    private void SaveInventoryState()
+    {
+        // rebuild the saved slot list from the current live inventory contents
+        savedSlots.Clear();
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            InventorySlot slot = slots[i];
+            savedSlots.Add(new SavedSlotData
+            {
+                item = slot.item,
+                quantity = slot.quantity
+            });
+        }
+
+        savedSelectedSlotIndex = SelectedSlotIndex;
+        hasSavedInventory = true;
+    }
+
+    private void RestoreSavedInventory()
+    {
+        // do nothing until a previous scene has actually stored inventory data
+        if (!hasSavedInventory)
+        {
+            return;
+        }
+
+        // copy the saved slot contents into this new scene's player inventory
+        for (int i = 0; i < slots.Count && i < savedSlots.Count; i++)
+        {
+            SavedSlotData savedSlot = savedSlots[i];
+            slots[i].item = savedSlot.item;
+            slots[i].quantity = savedSlot.quantity;
         }
     }
 }
