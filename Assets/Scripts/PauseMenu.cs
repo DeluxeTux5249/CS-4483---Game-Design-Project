@@ -8,6 +8,9 @@ public class PauseMenu : MonoBehaviour
     PlayerInput playerInput;
     [SerializeField] GameObject pauseScreen;
 
+    InputAction pauseAction;
+    InputAction resumeGame;
+
     private void Start()
     {
         var player = GameObject.FindWithTag("Player");
@@ -17,16 +20,33 @@ public class PauseMenu : MonoBehaviour
             Debug.Log("Couldn't find a player");
         }
 
-        // TODO: see if possible to add event for pause instead of manually adding to each scene
-        // otherwise, deal with it
+        /* Debug: These may be able to dynamically assign to the player pause/resume functionallity
+
+        // These technically work, but cause a lot of errors that aren't safe. 
+        pauseAction = playerInput.actions.FindAction("PauseGame");
+        pauseAction.performed += ctx => PauseGame();
+
+        resumeGame = playerInput.actions.FindAction("UnpauseGame");
+        resumeGame.performed += ctx => ResumeGame();
+         */
+
     }
+
+    /*
+    private void OnDestroy()
+    {
+        pauseAction.performed -= ctx => PauseGame();    
+        resumeGame.performed -= ctx => ResumeGame();
+    }
+     
+     */
 
     // stops game world from running
     void StopWorldSimulation()
     {
         isGameRunning = false;
         Time.timeScale = 0;
-        playerInput.DeactivateInput();
+        playerInput.SwitchCurrentActionMap("UI");
     }
 
     // stops game world from running
@@ -34,7 +54,7 @@ public class PauseMenu : MonoBehaviour
     {
         isGameRunning = true;
         Time.timeScale = 1;
-        playerInput.ActivateInput();
+        playerInput.SwitchCurrentActionMap("Player");
     }
 
     public void PauseGame()
