@@ -10,6 +10,7 @@ public class WorldItemPickup : MonoBehaviour
     [SerializeField] private int quantity = 1;
     // sprite renderer used to show the item icon in the world
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private bool wasCollected;
 
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class WorldItemPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // ignore anything that is not the player
-        if (!other.CompareTag("Player"))
+        if (wasCollected || !other.CompareTag("Player"))
         {
             return;
         }
@@ -55,6 +56,14 @@ public class WorldItemPickup : MonoBehaviour
         // add the item, then remove the pickup from the world if successful
         if (playerInventory.AddItem(itemData, quantity))
         {
+            wasCollected = true;
+
+            Collider2D pickupCollider = GetComponent<Collider2D>();
+            if (pickupCollider != null)
+            {
+                pickupCollider.enabled = false;
+            }
+
             Destroy(gameObject);
         }
     }

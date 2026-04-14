@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eac63141e2c044d1d9f39cc69a580de8, type: 3}
-  m_Name: FinalDungeonKey
+  m_Name: Golden Key
   m_EditorClassIdentifier: Assembly-CSharp::KeyItem
-  itemName: Exit Key
-  description: The key to the exit
-  icon: {fileID: -5011119429897219351, guid: a53c8cdfa2415442890e0017e990383c, type: 3}
-  maxStackSize: 1
+  itemName: Golden Key
+  description: 
+  icon: {fileID: 3275407576765064038, guid: 465fcf043936a1f479d943460f0fe606, type: 3}
+  maxStackSize: 99
   pickupPrefab: {fileID: 0}
   keyValue: 1

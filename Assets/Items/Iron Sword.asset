@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Iron Sword
   description: It's kinda rusty
   icon: {fileID: 1904935819908782335, guid: c183ffc5123894abb9fc2a13af6a1c17, type: 3}
-  maxStackSize: 99
+  maxStackSize: 1
   pickupPrefab: {fileID: 0}
   damageBonus: 2
