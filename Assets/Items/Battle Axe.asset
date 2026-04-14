@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f13d4190c61e349cab869929b60dd8ce, type: 3}
-  m_Name: Iron Sword
+  m_Name: Battle Axe
   m_EditorClassIdentifier: Assembly-CSharp::WeaponItem
-  itemName: Iron Sword
-  description: It's kinda rusty
-  icon: {fileID: 1904935819908782335, guid: c183ffc5123894abb9fc2a13af6a1c17, type: 3}
-  maxStackSize: 99
+  itemName: Battle Axe
+  description: 
+  icon: {fileID: -3832336661805547283, guid: 7e92e279d6224496cb0da2956e174705, type: 3}
+  maxStackSize: 1
   pickupPrefab: {fileID: 0}
-  damageBonus: 2
+  damageBonus: 7

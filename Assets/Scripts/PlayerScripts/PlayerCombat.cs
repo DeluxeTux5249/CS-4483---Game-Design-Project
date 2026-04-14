@@ -99,7 +99,7 @@ public class PlayerCombat : MonoBehaviour
         RefreshEquippedWeaponDamage();
     }
 
-    private void RefreshEquippedWeaponDamage()
+    public void RefreshEquippedWeaponDamage()
     {
         // start from the player's normal damage before applying any weapon bonus
         damage = baseDamage;

@@ -385,4 +385,46 @@ public class PlayerInventory : MonoBehaviour
             slots[i].quantity = savedSlot.quantity;
         }
     }
-}
+
+    public int GetItemCount(InventoryItemData itemData)
+    {
+        int total = 0;
+
+        for (int i = 0; i < slots.Count; i++ )
+        {
+            if (slots[i].item == itemData) total += slots[i].quantity;
+        }
+
+        return total;
+    }
+
+    public bool RemoveItem(InventoryItemData itemData, int quantity)
+    {
+        if (itemData == null || quantity <= 0) return false;
+
+        if (GetItemCount(itemData) < quantity) return false;
+
+        int remaining = quantity;
+
+        for (int i = 0; i < slots.Count; i ++)
+        {
+            InventorySlot slot = slots[i];
+
+            if (slot.item != itemData || slot.IsEmpty) continue;
+
+            int amountToRemove = Mathf.Min(slot.quantity, remaining);
+            slot.quantity -= amountToRemove;
+            remaining -= amountToRemove;
+
+            if (slot.quantity <= 0) slot.Clear();
+            if (remaining <= 0)
+            {
+                NotifyInventoryChanged();
+                return true;
+            }
+        }
+
+        NotifyInventoryChanged();
+        return true;
+    }
+ }

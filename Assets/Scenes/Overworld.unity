@@ -764,7 +764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &272280715
 Animator:
   serializedVersion: 7
@@ -7288,10 +7288,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopManger
   shopItems:
-  - item: {fileID: 11400000, guid: c7d9b6338db7f8249a4f6366eba9c2eb, type: 2}
-    price: 5
-  - item: {fileID: 11400000, guid: c7d9b6338db7f8249a4f6366eba9c2eb, type: 2}
-    price: 5
+  - item: {fileID: 11400000, guid: c26bdd331b17f4f669ce3809b1f01788, type: 2}
+    rewardItem: {fileID: 11400000, guid: 0368a02c7c16944428eafcdc8f9331c3, type: 2}
+    price: 1
+  - item: {fileID: 11400000, guid: a6810377a1567406ea9bad76b5e72ee9, type: 2}
+    rewardItem: {fileID: 11400000, guid: 213ac54c709e84a119a871f6d3b5e02b, type: 2}
+    price: 2
   shopBuildings:
   - item: {fileID: 11400000, guid: 263488c268e07d64aa3247a68e7d6c92, type: 2}
     price: 100
@@ -7301,6 +7303,7 @@ MonoBehaviour:
     prefab: {fileID: 2292552463371553564, guid: 4d65aafeff9416048b29c28e1c61c818, type: 3}
   shopTroops:
   - item: {fileID: 11400000, guid: 82e6c9bea8d3ab44b8407a84343f5fb5, type: 2}
+    rewardItem: {fileID: 0}
     price: 50
   shopSlots:
   - {fileID: 938731575}
@@ -7311,6 +7314,7 @@ MonoBehaviour:
   - {fileID: 28347572}
   - {fileID: 1896070638}
   - {fileID: 321234928}
+  coinItem: {fileID: 11400000, guid: bfe5b4c8c7bc4482c859b59f64f497b7, type: 2}
   shopTrigger: {fileID: 272280719}
   placementZoneVisual: {fileID: 1203421813}
   placementZoneCollider: {fileID: 1203421816}
@@ -8438,6 +8442,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2615102616787190865}
+    - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2615102616787190875}
   m_SourcePrefab: {fileID: 100100000, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
 --- !u!4 &2615102616787190856 stripped
 Transform:
@@ -8458,6 +8465,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClampPlayerToMap
   terrain: {fileID: 159398263}
   padding: 0.5
+--- !u!114 &2615102616787190875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423808852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a24d8fbb1494be29b0742b5c04bc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerConsumables
+  useConsumableKey: 31
 --- !u!1001 &3995092752158072988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8510,6 +8530,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4677616499565559306, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: bfe5b4c8c7bc4482c859b59f64f497b7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

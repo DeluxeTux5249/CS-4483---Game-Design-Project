@@ -5,6 +5,7 @@ public static class DungeonChestRuntimeBootstrap
 {
     // Only the dungeon scene should receive this automatic chest setup.
     private const string DungeonSceneName = "DungeonLayout";
+    private static DungeonChestBootstrapConfig bootstrapConfig;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Initialize()
@@ -29,6 +30,7 @@ public static class DungeonChestRuntimeBootstrap
         }
 
         // scan the loaded scene for objects named like dungeon chests
+        bootstrapConfig = Object.FindObjectOfType<DungeonChestBootstrapConfig>();
         Transform[] sceneTransforms = Object.FindObjectsOfType<Transform>();
         foreach (Transform candidate in sceneTransforms)
         {
@@ -89,6 +91,10 @@ public static class DungeonChestRuntimeBootstrap
         {
             // regular money chests get a small random coin reward
             dungeonChest.Configure(DungeonChest.ChestRewardType.Coins, Random.Range(5, 20));
+            if (bootstrapConfig != null && bootstrapConfig.CoinItem != null)
+            {
+                dungeonChest.SetRewardItem(bootstrapConfig.CoinItem);
+            }
         }
 
         dungeonChest.ResetVisual();

@@ -60,4 +60,9 @@ public class HealthTracker : MonoBehaviour
         SceneManager.LoadScene("Title");
     }
 
+    public bool isMax()
+    {
+        return (currentHealth == maxHealth);
+    }
+
 }

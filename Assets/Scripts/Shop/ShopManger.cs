@@ -7,6 +7,7 @@ public class ShopManger : MonoBehaviour
     [SerializeField] private List<ShopBuilding> shopBuildings;
     [SerializeField] private List<ShopItems> shopTroops;
     [SerializeField] private ShopSlot[] shopSlots;
+    [SerializeField] private InventoryItemData coinItem;
 
     public ShopTrigger shopTrigger;
     public GameObject placementZoneVisual;
@@ -123,10 +124,46 @@ public class ShopManger : MonoBehaviour
 
     public void BuySelected(int slotIndex)
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        PlayerInventory inventory = player.GetComponent<PlayerInventory>();
+        if (inventory == null) return;
+
         if (currentTab == "Buildings")
+        {
+            if (slotIndex < 0 || slotIndex >= shopBuildings.Count) return;
+
+            ShopBuilding building = shopBuildings[slotIndex];
+            if (inventory.GetItemCount(coinItem) < building.price)
+            {
+                Debug.Log("Not enough coins.");
+                return;
+            }
+
+            inventory.RemoveItem(coinItem, building.price);
             ShowPlacementZone(slotIndex);
-        else
-            Debug.Log("BuySelected: tab '" + currentTab + "' not implemented.");
+        }
+        else if (currentTab == "Items")
+        {
+            if (slotIndex < 0 || slotIndex >= shopItems.Count) return;
+
+            ShopItems selectedItem = shopItems[slotIndex];
+            if (inventory.GetItemCount(coinItem) < selectedItem.price)
+            {
+                Debug.Log("Not enough coins.");
+                return;
+            }
+
+            if (selectedItem.rewardItem == null)
+            {
+                Debug.LogWarning("Shop item has no reward item assigned");
+                return;
+            }
+
+            inventory.RemoveItem(coinItem, selectedItem.price);
+            inventory.AddItem(selectedItem.rewardItem, 1);
+        }
     }
 
     private void ShowPlacementZone(int slotIndex)
@@ -231,6 +268,7 @@ public class ShopManger : MonoBehaviour
 public class ShopItems
 {
     public ItemSO item;
+    public InventoryItemData rewardItem;
     public int price;
 }
 

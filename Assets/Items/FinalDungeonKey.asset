@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac63141e2c044d1d9f39cc69a580de8, type: 3}
   m_Name: FinalDungeonKey
   m_EditorClassIdentifier: Assembly-CSharp::KeyItem
-  itemName: New Item
-  description: 
-  icon: {fileID: 0}
+  itemName: Exit Key
+  description: The key to the exit
+  icon: {fileID: -5011119429897219351, guid: a53c8cdfa2415442890e0017e990383c, type: 3}
   maxStackSize: 99
   pickupPrefab: {fileID: 0}
   keyValue: 1

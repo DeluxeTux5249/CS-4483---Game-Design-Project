@@ -69,6 +69,12 @@ public class DungeonChest : MonoBehaviour
         trapPrefabResourcePath = trapPath;
     }
 
+    public void SetRewardItem(InventoryItemData newRewardItem)
+    {
+        // lets runtime setup provide a direct asset reference for chest rewards
+        rewardItem = newRewardItem;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (isOpened || !other.CompareTag("Player"))
@@ -119,7 +125,7 @@ public class DungeonChest : MonoBehaviour
         switch (rewardType)
         {
             case ChestRewardType.Coins:
-                GiveReward(playerInventory, null, "NewCoinItem", rewardAmount);
+                GiveReward(playerInventory, rewardItem, rewardItemResourcePath, rewardAmount);
                 Debug.Log($"{name} opened: awarded {rewardAmount} coins.");
                 break;
 

@@ -2859,7 +2859,7 @@ GameObject:
   - component: {fileID: 167326464}
   - component: {fileID: 167326463}
   m_Layer: 0
-  m_Name: Weapon Chest
+  m_Name: Fake Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6208,6 +6208,7 @@ GameObject:
   - component: {fileID: 803203821}
   - component: {fileID: 803203824}
   - component: {fileID: 803203823}
+  - component: {fileID: 803203825}
   m_Layer: 0
   m_Name: Final Door
   m_TagString: Untagged
@@ -6351,6 +6352,19 @@ MonoBehaviour:
   sceneToLoad: DungeonCompleteScene
   spawnPosition: {x: 3, y: 2, z: 0}
   isDungeon1Exit: 1
+--- !u!114 &803203825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803203820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7362cf2ebf47ac8f67a79f43673757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonChestBootstrapConfig
+  coinItem: {fileID: 11400000, guid: bfe5b4c8c7bc4482c859b59f64f497b7, type: 2}
 --- !u!1 &848373593
 GameObject:
   m_ObjectHideFlags: 0
@@ -6919,6 +6933,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1707342103}
+    - targetCorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1707342113}
   m_SourcePrefab: {fileID: 100100000, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
 --- !u!4 &1121612609 stripped
 Transform:
@@ -13610,6 +13627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1673147045}
   - component: {fileID: 1673147044}
+  - component: {fileID: 1673147046}
   m_Layer: 0
   m_Name: Final Key Chest
   m_TagString: Untagged
@@ -13691,6 +13709,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673147046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673147043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da000470c28134687a0d3ee75077297a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonChest
+  rewardType: 2
+  rewardAmount: 1
+  rewardItem: {fileID: 11400000, guid: e112a2b77bd384fe1887a6a6ef82fd02, type: 2}
+  rewardItemResourcePath: 
+  trapPrefabResourcePath: 
+  openedTint: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &1707342097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7838194074359655376, guid: 64a18da97578866489d0b5f1970a18fd, type: 3}
@@ -13742,6 +13778,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.81, y: 0.91}
   m_EdgeRadius: 0
+--- !u!114 &1707342113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707342097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a24d8fbb1494be29b0742b5c04bc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerConsumables
+  useConsumableKey: 31
 --- !u!1 &1793909543
 GameObject:
   m_ObjectHideFlags: 0
@@ -13752,8 +13801,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1793909545}
   - component: {fileID: 1793909544}
+  - component: {fileID: 1793909546}
   m_Layer: 0
-  m_Name: Fake Chest
+  m_Name: Weapon Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13833,6 +13883,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793909546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793909543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da000470c28134687a0d3ee75077297a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonChest
+  rewardType: 1
+  rewardAmount: 1
+  rewardItem: {fileID: 11400000, guid: a1ea88814dea04bbe9b1e4cccc075295, type: 2}
+  rewardItemResourcePath: 
+  trapPrefabResourcePath: 
+  openedTint: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1001 &1796207884
 PrefabInstance:
   m_ObjectHideFlags: 0
