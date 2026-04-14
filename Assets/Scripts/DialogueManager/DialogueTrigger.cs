@@ -13,8 +13,19 @@ public class DialogueTrigger : MonoBehaviour
     public DialogueTree tree;
     public Button interactButton;
     public GameObject dialogue_pop_up;
+    public PlayerInput playerInput;
 
-    public void TriggerDialog()
+    private void Start()
+    {
+        var player = GameObject.FindWithTag("Player");
+        playerInput = player.GetComponent<PlayerInput>();
+        if (playerInput == null)
+        {
+            Debug.Log("Couldn't find a player");
+        }
+    }
+
+    public void TriggerDialog(InputAction.CallbackContext context)
     {
         dialogue_pop_up.SetActive(false);
         FindAnyObjectByType<DialogueManager>().StartDialogue(tree.nodes[0]);       
@@ -24,8 +35,8 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            interactButton.gameObject.SetActive(true);
-            interactButton.onClick.AddListener(this.TriggerDialog);
+            Debug.Log(playerInput.actions.FindActionMap("Player").FindAction("Interact"));
+            playerInput.actions.FindActionMap("Player").FindAction("Interact").performed += TriggerDialog;
         }
     }
 
@@ -33,8 +44,14 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            interactButton.onClick.RemoveListener(this.TriggerDialog);
-            interactButton.gameObject.SetActive(false);
+            playerInput.actions.FindActionMap("Player").FindAction("Interact").performed -= TriggerDialog;
         }
     }
+
+    private void OnDestroy()
+    {
+        // not needed; player is destroyed tween loads
+        //playerInput.actions.FindActionMap("Player").FindAction("Interact").performed -= TriggerDialog;
+    }
+
 }
