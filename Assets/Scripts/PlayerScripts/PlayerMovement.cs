@@ -28,19 +28,20 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInventory playerInventory;
     private Keyboard keyboard;
 
+    [SerializeField] private AudioSource dashSoundPlayer;
 
     private void Start()
     {
          // Spawn player at door if moving between scenes
-    if(PlayerPrefs.HasKey("SpawnX") && PlayerPrefs.HasKey("SpawnY"))
-    {
-        float x = PlayerPrefs.GetFloat("SpawnX");
-        float y = PlayerPrefs.GetFloat("SpawnY");
-        transform.position = new Vector3(x, y, transform.position.z);
+        if(PlayerPrefs.HasKey("SpawnX") && PlayerPrefs.HasKey("SpawnY"))
+        {
+            float x = PlayerPrefs.GetFloat("SpawnX");
+            float y = PlayerPrefs.GetFloat("SpawnY");
+            transform.position = new Vector3(x, y, transform.position.z);
 
-        PlayerPrefs.DeleteKey("SpawnX");
-        PlayerPrefs.DeleteKey("SpawnY");
-    }
+            PlayerPrefs.DeleteKey("SpawnX");
+            PlayerPrefs.DeleteKey("SpawnY");
+        }
         animator = GetComponent<Animator>();
         playerInventory = GetComponent<PlayerInventory>();
         keyboard = Keyboard.current;
@@ -109,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
         isDashing = true;
         rb.linearVelocity += moveDirection * moveSpeed * dashSpeed;
+        if (dashSoundPlayer) dashSoundPlayer.Play();
         StartCoroutine(EndDashInSeconds(dashTime));
     }
 

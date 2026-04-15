@@ -47,8 +47,19 @@ public class PauseMenu : MonoBehaviour
         StopWorldSimulation();
         pauseScreen.SetActive(true);
     }
+    public void PauseGame()
+    {
+        StopWorldSimulation();
+        pauseScreen.SetActive(true);
+    }
 
     public void ResumeGame(InputAction.CallbackContext context)
+    {
+        StartWorldSimulation();
+        pauseScreen.SetActive(false);
+    }
+
+    public void ResumeGame()
     {
         StartWorldSimulation();
         pauseScreen.SetActive(false);

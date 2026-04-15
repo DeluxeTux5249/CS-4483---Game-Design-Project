@@ -85,6 +85,7 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: bfe5b4c8c7bc4482c859b59f64f497b7, type: 2}
   quantity: 1
   spriteRenderer: {fileID: 1042654134678582924}
+  collisionSound: {fileID: 8300000, guid: ab2ce192a849ef64b975bfae8b0a24ce, type: 3}
 --- !u!1 &4947532172320656169
 GameObject:
   m_ObjectHideFlags: 0

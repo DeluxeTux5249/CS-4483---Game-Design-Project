@@ -12,6 +12,8 @@ public class WorldItemPickup : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     private bool wasCollected;
 
+    [SerializeField] private AudioClip collisionSound;
+
     private void Awake()
     {
         // Pickups use trigger collisions so the player can walk over them.
@@ -64,6 +66,7 @@ public class WorldItemPickup : MonoBehaviour
                 pickupCollider.enabled = false;
             }
 
+            AudioSource.PlayClipAtPoint(collisionSound, transform.position);
             Destroy(gameObject);
         }
     }

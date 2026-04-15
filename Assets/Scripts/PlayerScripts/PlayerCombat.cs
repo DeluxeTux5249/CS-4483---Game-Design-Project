@@ -14,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     public float knockTime = 0.5f;
     private float timer;
     private PlayerInventory playerInventory;
+    [SerializeField] private AudioSource swordPlayer;
 
     private void Awake()
     {
@@ -39,8 +40,8 @@ public class PlayerCombat : MonoBehaviour
         if(timer <= 0)
         {
             animator.SetBool("isAttacking", true);
-
             timer = cooldown;
+            swordPlayer.Play();
         }
     //    animator.SetBool("isAttacking", true);
     }

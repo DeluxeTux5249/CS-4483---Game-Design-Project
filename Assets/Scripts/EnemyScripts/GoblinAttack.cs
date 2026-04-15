@@ -11,6 +11,8 @@ public class GoblinAttack : MonoBehaviour
 
     private GoblinEnemy goblinEnemy;
 
+    [SerializeField] private AudioSource attackSoundPlayer;
+
     private void Awake()
     {
         goblinEnemy = GetComponentInParent<GoblinEnemy>();
@@ -18,6 +20,7 @@ public class GoblinAttack : MonoBehaviour
 
     public void Attack()
     {
+        attackSoundPlayer.Play();
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer);
         if (hits.Length > 0)
         {
