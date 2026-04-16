@@ -8,13 +8,19 @@ public class Door : MonoBehaviour
 
     public bool isDungeon1Exit;
 
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log($"Door triggered on {gameObject.name}, loading: {sceneToLoad}");
             if (string.IsNullOrEmpty(sceneToLoad)) return;
+
+            // Dungeon exits are always allowed. All other doors are blocked during a wave.
+            if (!isDungeon1Exit && Timer.IsWaveActive)
+            {
+                Debug.Log($"[Door] Scene change blocked on \"{gameObject.name}\" — wave is active!");
+                return;
+            }
 
             if (isDungeon1Exit)
             {
