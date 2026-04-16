@@ -7413,6 +7413,12 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: a6810377a1567406ea9bad76b5e72ee9, type: 2}
     rewardItem: {fileID: 11400000, guid: 213ac54c709e84a119a871f6d3b5e02b, type: 2}
     price: 2
+  - item: {fileID: 11400000, guid: ba747851874b7d641b381067312fc9d8, type: 2}
+    rewardItem: {fileID: 11400000, guid: 4e550ff3575eaa242855bffdf81c656b, type: 2}
+    price: 2
+  - item: {fileID: 11400000, guid: e0fc9843b6aaafc4892c32a274f1643e, type: 2}
+    rewardItem: {fileID: 11400000, guid: 35ca2c3f8504e4a4b843e597e9d11451, type: 2}
+    price: 2
   shopBuildings:
   - item: {fileID: 11400000, guid: 263488c268e07d64aa3247a68e7d6c92, type: 2}
     price: 10
@@ -8258,6 +8264,54 @@ MonoBehaviour:
   itemIcon: {fileID: 2085187771}
   shopManager: {fileID: 1470651121}
   slotIndex: 0
+--- !u!1 &1924170275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1924170277}
+  - component: {fileID: 1924170276}
+  m_Layer: 0
+  m_Name: Statsmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1924170276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924170275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df9edae75c288340b1d34b544c3f597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Statsmanager
+  knockbackStun: 0.1
+  attackSpeed: 1.5
+  maxHealth: 10
+  speed: 5
+--- !u!4 &1924170277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924170275}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1631.5442, y: 1031.3848, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1962751757 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2295395590445337048, guid: 243e389373d0e4d41ae0074bd58f18ea, type: 3}
@@ -9231,3 +9285,4 @@ SceneRoots:
   - {fileID: 80073291}
   - {fileID: 3537435279640446802}
   - {fileID: 1259251055}
+  - {fileID: 1924170277}

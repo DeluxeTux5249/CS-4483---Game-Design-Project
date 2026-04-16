@@ -5,18 +5,17 @@ using UnityEngine.SceneManagement;
 public class HealthTracker : MonoBehaviour
 {
 
-    [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth = 10;
     [SerializeField] private HealthBar healthBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = Statsmanager.instance.maxHealth;
 
         if (healthBar != null )
         {
-            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetMaxHealth(Statsmanager.instance.maxHealth);
             healthBar.SetHealth(currentHealth);
         }
     }
@@ -40,9 +39,9 @@ public class HealthTracker : MonoBehaviour
         currentHealth += hpReceived;
 
         // can't heal beyond max
-        if (currentHealth > maxHealth)
+        if (currentHealth > Statsmanager.instance.maxHealth)
         {
-            currentHealth = maxHealth;
+            currentHealth = Statsmanager.instance.maxHealth;
         }
 
         if (healthBar != null) healthBar.SetHealth(currentHealth);
@@ -62,7 +61,7 @@ public class HealthTracker : MonoBehaviour
 
     public bool isMax()
     {
-        return (currentHealth == maxHealth);
+        return (currentHealth == Statsmanager.instance.maxHealth);
     }
 
 }
