@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI m_TextMeshProUGUI;
 
-    const float WAVE_INTERVAL   = 10f;
+    const float WAVE_INTERVAL   = 180f;
     const float SINGLE_INTERVAL = 45f;
 
     float waveRemaining   = WAVE_INTERVAL;
