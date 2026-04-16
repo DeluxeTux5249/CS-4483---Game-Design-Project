@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private AudioSource dashSoundPlayer;
 
+    public StatsUI statsui;
+
     private void Start()
     {
          // Spawn player at door if moving between scenes
@@ -68,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!isDashing && !isKnockedback)
             rb.linearVelocity = moveInput * Statsmanager.instance.speed;
+
+        if (Input.GetButtonDown("OpenStats"))
+        {
+            statsui.ToggleStats();
+        }
 
     }
 
