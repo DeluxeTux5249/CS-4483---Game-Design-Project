@@ -245,6 +245,7 @@ MonoBehaviour:
     m_Bits: 64
   knockbackForce: 5
   StunTime: 0.25
+  attackSoundPlayer: {fileID: 0}
 --- !u!114 &5977511826168402619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,8 +259,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   healthBar: {fileID: 2262951110774584246}
-  currentHealth: 5
-  maxHealth: 5
+  currentHealth: 3
+  maxHealth: 3
+  deathSound: {fileID: 0}
 --- !u!114 &7102097324976704329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +291,7 @@ MonoBehaviour:
   weaponRange: 40
   playerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
   knockbackForce: 55
   StunTime: 0.5
 --- !u!114 &6142669774252340763
@@ -304,7 +306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6f98056fef6524aab9ac106bb588be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinBulidingAttack
-  player_loc: {fileID: 0}
   lostPlayerDelay: 1
   attackRange: 1
   enemyState: 0
@@ -315,9 +316,11 @@ MonoBehaviour:
   detectionPoint: {fileID: 4782542565877170003}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
   damage: 1
   attackDamageDelay: 0.2
+  knockbackForce: 5
+  StunTime: 0.1
 --- !u!1 &3121730035811407984
 GameObject:
   m_ObjectHideFlags: 0

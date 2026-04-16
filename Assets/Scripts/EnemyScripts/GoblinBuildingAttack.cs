@@ -1,16 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class GoblinBulidingAttack : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Transform player;
-    public Transform player_loc;
-    private int facingDirection = 1; // 1 for right, -1 for left
+    private Transform target;           // current chase/attack target (building or player)
+    private bool targetingPlayer = false;
+    private int facingDirection = 1;
     private Animator animator;
     private Vector2 spawnPosition;
-    private float lostPlayerTimer = 0f;
     public float lostPlayerDelay = 1f;
     public float attackRange = 1f;
     public GoblinEnemyState enemyState;
@@ -23,18 +21,14 @@ public class GoblinBulidingAttack : MonoBehaviour
     public LayerMask playerLayer;
     public int damage = 1;
     public float attackDamageDelay = 0.2f;
-
+    public float knockbackForce = 55f;
+    public float StunTime = 0.5f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spawnPosition = transform.position;
-        GameObject playerObj = GameObject.FindWithTag("Player Building");
-        if (playerObj != null)
-        {
-            player_loc = playerObj.transform;
-        }
         ChangeState(GoblinEnemyState.Idle);
     }
 
@@ -42,48 +36,110 @@ public class GoblinBulidingAttack : MonoBehaviour
     {
         if (enemyState == GoblinEnemyState.Knockback)
             return;
-        CheckForBuilding();
+
+        FindTarget();
 
         if (attackTimer > 0)
-        {
             attackTimer -= Time.deltaTime;
-        }
 
         if (enemyState == GoblinEnemyState.Run)
-        {
             Chase();
-        }
         else if (enemyState == GoblinEnemyState.ReturnToSpawn)
-        {
             MoveToSpawn();
-        }
         else if (enemyState == GoblinEnemyState.Attack_Right ||
                  enemyState == GoblinEnemyState.Attack_Down ||
                  enemyState == GoblinEnemyState.Attack_Up)
-        {
             rb.linearVelocity = Vector2.zero;
-        }
     }
 
-    private IEnumerator DealBuildingDamage()
+    // Finds the closest building; if none, switches to targeting the player.
+    private void FindTarget()
     {
-        yield return new WaitForSeconds(attackDamageDelay);
-        if (player != null)
+        GameObject[] buildings = GameObject.FindGameObjectsWithTag("Player Building");
+
+        if (buildings.Length > 0)
         {
-            BuildingHealth bh = player.GetComponent<BuildingHealth>();
-            if (bh != null)
+            targetingPlayer = false;
+            float closestDist = float.MaxValue;
+            foreach (GameObject b in buildings)
             {
-                print("Goblin dealing " + damage + " damage to " + player.name);
-                bh.TakeDamage(damage);
+                float dist = Vector2.Distance(transform.position, b.transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    target = b.transform;
+                }
             }
-            else
-            {
-                print("Target " + player.name + " has no BuildingHealth component!");
-            }
+
+            if (enemyState != GoblinEnemyState.Attack_Right &&
+                enemyState != GoblinEnemyState.Attack_Down &&
+                enemyState != GoblinEnemyState.Attack_Up)
+                ChangeState(GoblinEnemyState.Run);
         }
         else
         {
-            print("DealBuildingDamage: player is null");
+            // All buildings destroyed — switch to chasing the player.
+            if (!targetingPlayer)
+            {
+                targetingPlayer = true;
+                GameObject playerObj = GameObject.FindWithTag("Player");
+                if (playerObj != null)
+                {
+                    target = playerObj.transform;
+                    Debug.Log("[GoblinBulidingAttack] Buildings gone — switching to player.");
+                    ChangeState(GoblinEnemyState.Run);
+                }
+                else
+                {
+                    target = null;
+                }
+            }
+
+            // Distance-based attack on player (no collision needed).
+            if (target != null && attackTimer <= 0 &&
+                enemyState != GoblinEnemyState.Attack_Right &&
+                enemyState != GoblinEnemyState.Attack_Down &&
+                enemyState != GoblinEnemyState.Attack_Up)
+            {
+                float dist = Vector2.Distance(transform.position, target.position);
+                if (dist <= attackRange)
+                {
+                    attackTimer = attackCooldown;
+                    if (target.position.y < transform.position.y - 0.2f)
+                        ChangeState(GoblinEnemyState.Attack_Down);
+                    else if (target.position.y > transform.position.y + 0.2f)
+                        ChangeState(GoblinEnemyState.Attack_Up);
+                    else
+                        ChangeState(GoblinEnemyState.Attack_Right);
+                }
+            }
+        }
+    }
+
+    private IEnumerator DealDamage()
+    {
+        yield return new WaitForSeconds(attackDamageDelay);
+        if (target == null) yield break;
+
+        if (targetingPlayer)
+        {
+            HealthTracker ht = target.GetComponent<HealthTracker>();
+            if (ht != null)
+                ht.GiveDamage(damage);
+            else
+                Debug.Log($"[GoblinBulidingAttack] {target.name} has no HealthTracker!");
+
+            PlayerMovement pm = target.GetComponent<PlayerMovement>();
+            if (pm != null)
+                pm.Knockback(transform, knockbackForce, StunTime);
+        }
+        else
+        {
+            BuildingHealth bh = target.GetComponent<BuildingHealth>();
+            if (bh != null)
+                bh.TakeDamage(damage);
+            else
+                Debug.Log($"[GoblinBulidingAttack] {target.name} has no BuildingHealth!");
         }
     }
 
@@ -93,9 +149,9 @@ public class GoblinBulidingAttack : MonoBehaviour
         attackPauseCoroutine = null;
         attackTimer = attackCooldown;
 
-        if (player != null)
+        if (target != null)
         {
-            float dist = Vector2.Distance(transform.position, player.position);
+            float dist = Vector2.Distance(transform.position, target.position);
             if (dist > attackRange)
                 ChangeState(GoblinEnemyState.Run);
             else
@@ -127,16 +183,14 @@ public class GoblinBulidingAttack : MonoBehaviour
 
     void Chase()
     {
-        if (player.position.x > transform.position.x && facingDirection == -1)
-        {
-            Flip();
-        }
-        else if (player.position.x < transform.position.x && facingDirection == 1)
-        {
-            Flip();
-        }
+        if (target == null) return;
 
-        Vector2 direction = (player.position - transform.position).normalized;
+        if (target.position.x > transform.position.x && facingDirection == -1)
+            Flip();
+        else if (target.position.x < transform.position.x && facingDirection == 1)
+            Flip();
+
+        Vector2 direction = (target.position - transform.position).normalized;
         rb.linearVelocity = direction * 3.5f;
     }
 
@@ -166,39 +220,14 @@ public class GoblinBulidingAttack : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    private void CheckForBuilding()
-    {
-        var goArray = GameObject.FindGameObjectsWithTag("Player Building");
-
-        if (goArray.Length == 0)
-            return;
-
-        // Find the closest building to chase
-        float closestDist = float.MaxValue;
-        foreach (GameObject b in goArray)
-        {
-            float dist = Vector2.Distance(transform.position, b.transform.position);
-            if (dist < closestDist)
-            {
-                closestDist = dist;
-                player = b.transform;
-            }
-        }
-
-        if (enemyState != GoblinEnemyState.Attack_Right &&
-            enemyState != GoblinEnemyState.Attack_Down &&
-            enemyState != GoblinEnemyState.Attack_Up)
-        {
-            ChangeState(GoblinEnemyState.Run);
-        }
-    }
-
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (targetingPlayer) return; // player attacks handled by distance in FindTarget()
+
         if (!collision.gameObject.CompareTag("Player Building"))
             return;
 
-        player = collision.transform;
+        target = collision.transform;
 
         if (attackTimer <= 0 &&
             enemyState != GoblinEnemyState.Attack_Right &&
@@ -207,9 +236,9 @@ public class GoblinBulidingAttack : MonoBehaviour
         {
             attackTimer = attackCooldown;
 
-            if (player.position.y < transform.position.y - 0.2f)
+            if (target.position.y < transform.position.y - 0.2f)
                 ChangeState(GoblinEnemyState.Attack_Down);
-            else if (player.position.y > transform.position.y + 0.2f)
+            else if (target.position.y > transform.position.y + 0.2f)
                 ChangeState(GoblinEnemyState.Attack_Up);
             else
                 ChangeState(GoblinEnemyState.Attack_Right);
@@ -218,13 +247,12 @@ public class GoblinBulidingAttack : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player Building") &&
+        if (!targetingPlayer &&
+            collision.gameObject.CompareTag("Player Building") &&
             enemyState != GoblinEnemyState.Attack_Right &&
             enemyState != GoblinEnemyState.Attack_Down &&
             enemyState != GoblinEnemyState.Attack_Up)
-        {
             ChangeState(GoblinEnemyState.Run);
-        }
     }
 
     public void ChangeState(GoblinEnemyState state)
@@ -252,7 +280,7 @@ public class GoblinBulidingAttack : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
             attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
-            StartCoroutine(DealBuildingDamage());
+            StartCoroutine(DealDamage());
         }
         else if (enemyState == GoblinEnemyState.Attack_Down)
         {
@@ -260,7 +288,7 @@ public class GoblinBulidingAttack : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
             attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
-            StartCoroutine(DealBuildingDamage());
+            StartCoroutine(DealDamage());
         }
         else if (enemyState == GoblinEnemyState.Attack_Up)
         {
@@ -268,7 +296,7 @@ public class GoblinBulidingAttack : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
             attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
-            StartCoroutine(DealBuildingDamage());
+            StartCoroutine(DealDamage());
         }
     }
 }

@@ -1,60 +1,42 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnGoblin : MonoBehaviour
 {
-    public GameObject goblin_builing;
     public GameObject goblin;
+    public GameObject goblin_builing;
 
-    IEnumerator Start()
+    // Assign map-corner transforms here. Goblins spawn at a random one.
+    public Transform[] spawnPoints;
+
+    // Called by Timer to spawn a player-attacking goblin from this spawner.
+    public GameObject SpawnPlayer()
     {
-        StartCoroutine(SingleSpawnLoop());
-        StartCoroutine(WaveSpawnLoop());
-        yield break;
-    }
-
-    IEnumerator SingleSpawnLoop()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(45f);
-            SpawnOneGoblin();
-        }
-    }
-
-    IEnumerator WaveSpawnLoop()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(300f);
-
-            for (int i = 0; i < 2; i++)
-            {
-                SpawnOneGoblin();
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                SpawnGoblinToAttackBuilding();
-            }
-        }
-    }
-
-    void SpawnOneGoblin()
-    {
-        if (goblin == null) return;
-
-        Vector3 pos = transform.position;
+        if (goblin == null) return null;
         GameObject go = Instantiate(goblin);
-        go.transform.position = new Vector3(pos.x, pos.y + transform.localScale.y / 2f, pos.z);
-        go.transform.localScale = new Vector3(1, 1, 1);
+        go.transform.position = PickSpawnPosition();
+        go.transform.localScale = Vector3.one;
+        return go;
     }
 
-    void SpawnGoblinToAttackBuilding()
+    // Called by Timer to spawn a building-attacking goblin from this spawner.
+    public GameObject SpawnBuilding()
     {
-        if (goblin_builing == null) return;
-        Vector3 pos = transform.position;
+        if (goblin_builing == null) return null;
         GameObject go = Instantiate(goblin_builing);
-        go.transform.position = new Vector3(pos.x, pos.y + transform.localScale.y / 2f, pos.z);
-        go.transform.localScale = new Vector3(1, 1, 1);
+        go.transform.position = PickSpawnPosition();
+        go.transform.localScale = Vector3.one;
+        return go;
+    }
+
+    Vector3 PickSpawnPosition()
+    {
+        if (spawnPoints != null && spawnPoints.Length > 0)
+        {
+            Transform pt = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            if (pt != null) return pt.position;
+        }
+        Vector3 pos = transform.position;
+        return new Vector3(pos.x, pos.y + transform.localScale.y / 2f, pos.z);
     }
 }

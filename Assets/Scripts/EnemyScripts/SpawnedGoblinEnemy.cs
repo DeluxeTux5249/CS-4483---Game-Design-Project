@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class SpawnedGoblinEnemy : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Transform player;
     public Transform player_loc;
-    private int facingDirection = 1; // 1 for right, -1 for left
+    private int facingDirection = 1;
     private Animator animator;
     private Vector2 spawnPosition;
     private float lostPlayerTimer = 0f;
@@ -21,7 +20,10 @@ public class SpawnedGoblinEnemy : MonoBehaviour
     public float playerDetectionRange = 5f;
     public Transform detectionPoint;
     public LayerMask playerLayer;
-
+    public int damage = 1;
+    public float attackDamageDelay = 0.2f;
+    public float knockbackForce = 55f;
+    public float StunTime = 0.5f;
 
     private void Start()
     {
@@ -30,9 +32,7 @@ public class SpawnedGoblinEnemy : MonoBehaviour
         spawnPosition = transform.position;
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
-        {
             player_loc = playerObj.transform;
-        }
         ChangeState(GoblinEnemyState.Idle);
     }
 
@@ -43,24 +43,32 @@ public class SpawnedGoblinEnemy : MonoBehaviour
         CheckForPlayer();
 
         if (attackTimer > 0)
-        {
             attackTimer -= Time.deltaTime;
-        }
 
         if (enemyState == GoblinEnemyState.Run)
-        {
             Chase();
-        }
         else if (enemyState == GoblinEnemyState.ReturnToSpawn)
-        {
             MoveToSpawn();
-        }
         else if (enemyState == GoblinEnemyState.Attack_Right ||
                  enemyState == GoblinEnemyState.Attack_Down ||
                  enemyState == GoblinEnemyState.Attack_Up)
-        {
             rb.linearVelocity = Vector2.zero;
-        }
+    }
+
+    private IEnumerator DealPlayerDamage()
+    {
+        yield return new WaitForSeconds(attackDamageDelay);
+        if (player == null) yield break;
+
+        HealthTracker ht = player.GetComponent<HealthTracker>();
+        if (ht != null)
+            ht.GiveDamage(damage);
+        else
+            Debug.Log($"[SpawnedGoblinEnemy] {player.name} has no HealthTracker!");
+
+        PlayerMovement pm = player.GetComponent<PlayerMovement>();
+        if (pm != null)
+            pm.Knockback(transform, knockbackForce, StunTime);
     }
 
     private IEnumerator EndAttackPause(float delayTime)
@@ -104,13 +112,9 @@ public class SpawnedGoblinEnemy : MonoBehaviour
     void Chase()
     {
         if (player.position.x > transform.position.x && facingDirection == -1)
-        {
             Flip();
-        }
         else if (player.position.x < transform.position.x && facingDirection == 1)
-        {
             Flip();
-        }
 
         Vector2 direction = (player.position - transform.position).normalized;
         rb.linearVelocity = direction * 3.5f;
@@ -144,35 +148,37 @@ public class SpawnedGoblinEnemy : MonoBehaviour
 
     private void CheckForPlayer()
     {
+        if (player_loc == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null) player_loc = playerObj.transform;
+        }
 
         player = player_loc;
-        lostPlayerTimer = 0f;
+        if (player == null) return;
 
+        lostPlayerTimer = 0f;
         float dist = Vector2.Distance(transform.position, player.position);
+
+        bool isAttacking = enemyState == GoblinEnemyState.Attack_Right ||
+                           enemyState == GoblinEnemyState.Attack_Down ||
+                           enemyState == GoblinEnemyState.Attack_Up;
 
         if (dist <= attackRange && attackTimer <= 0)
         {
             attackTimer = attackCooldown;
 
             if (player.position.y < transform.position.y - 0.2f)
-            {
                 ChangeState(GoblinEnemyState.Attack_Down);
-            }
             else if (player.position.y > transform.position.y + 0.2f)
-            {
                 ChangeState(GoblinEnemyState.Attack_Up);
-            }
             else
-            {
                 ChangeState(GoblinEnemyState.Attack_Right);
-            }
         }
-        else if (dist > attackRange && (enemyState != GoblinEnemyState.Attack_Up || enemyState != GoblinEnemyState.Attack_Down || enemyState != GoblinEnemyState.Attack_Right))
+        else if (dist > attackRange && !isAttacking)
         {
             ChangeState(GoblinEnemyState.Run);
         }
-            
-        
     }
 
     public void ChangeState(GoblinEnemyState state)
@@ -200,6 +206,7 @@ public class SpawnedGoblinEnemy : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
             attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
+            StartCoroutine(DealPlayerDamage());
         }
         else if (enemyState == GoblinEnemyState.Attack_Down)
         {
@@ -207,6 +214,7 @@ public class SpawnedGoblinEnemy : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
             attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
+            StartCoroutine(DealPlayerDamage());
         }
         else if (enemyState == GoblinEnemyState.Attack_Up)
         {
@@ -214,6 +222,7 @@ public class SpawnedGoblinEnemy : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             if (attackPauseCoroutine != null) StopCoroutine(attackPauseCoroutine);
             attackPauseCoroutine = StartCoroutine(EndAttackPause(postAttackStopTime));
+            StartCoroutine(DealPlayerDamage());
         }
     }
 }

@@ -286,7 +286,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3327448149867847348}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 770af0293409cb34890487ec12ac21a7, type: 3}
   m_Name: 
@@ -299,6 +299,7 @@ MonoBehaviour:
     m_Bits: 64
   knockbackForce: 5
   StunTime: 0.25
+  attackSoundPlayer: {fileID: 0}
 --- !u!114 &6457093080231471482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,8 +313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   healthBar: {fileID: 8091843769373364420}
-  currentHealth: 5
-  maxHealth: 5
+  currentHealth: 2
+  maxHealth: 2
+  deathSound: {fileID: 0}
 --- !u!114 &2454409518535057714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +352,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  damage: 1
+  attackDamageDelay: 0.2
+  knockbackForce: 5
+  StunTime: 0.1
 --- !u!1 &4236172353510725909
 GameObject:
   m_ObjectHideFlags: 0
