@@ -8607,6 +8607,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5569010644967730765, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: enemyID
+      value: Overworld_1
+      objectReference: {fileID: 0}
     - target: {fileID: 9094208859029238694, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_IsActive
       value: 1

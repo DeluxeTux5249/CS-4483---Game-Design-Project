@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
     [SerializeField] private AudioClip deathSound;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -41,6 +42,9 @@ public class EnemyHealth : MonoBehaviour
             {
                 if (deathSound) 
                     AudioSource.PlayClipAtPoint(deathSound, transform.position);
+
+                var isPersistantEnemy = GetComponent<EnemyPersistance>();
+                if (isPersistantEnemy) isPersistantEnemy.MarkAsDead();
                 Destroy(gameObject);
             }
         }
