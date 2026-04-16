@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     // Basic Items for Player Movement
-    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
@@ -68,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             playerCombat.Attack();
         }
         if (!isDashing && !isKnockedback)
-            rb.linearVelocity = moveInput * moveSpeed;
+            rb.linearVelocity = moveInput * Statsmanager.instance.speed;
 
     }
 
@@ -109,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isDashing = true;
-        rb.linearVelocity += moveDirection * moveSpeed * dashSpeed;
+        rb.linearVelocity += moveDirection * Statsmanager.instance.speed * dashSpeed;
         if (dashSoundPlayer) dashSoundPlayer.Play();
         StartCoroutine(EndDashInSeconds(dashTime));
     }

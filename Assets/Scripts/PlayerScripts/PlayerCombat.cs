@@ -3,14 +3,12 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Animator animator;
-    public float cooldown = 1.5f;
     public float knockbackForce = 50f;
     public Transform attackPoint;
     public float weaponRange = 1f;
     public LayerMask enemyLayer;
     public int baseDamage = 1;
     public int damage = 1;
-    public float stunTime = 0.5f;
     public float knockTime = 0.5f;
     private float timer;
     private PlayerInventory playerInventory;
@@ -40,7 +38,7 @@ public class PlayerCombat : MonoBehaviour
         if(timer <= 0)
         {
             animator.SetBool("isAttacking", true);
-            timer = cooldown;
+            timer = Statsmanager.instance.attackSpeed;
             swordPlayer.Play();
         }
     //    animator.SetBool("isAttacking", true);
@@ -52,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
         if (hitColliders.Length > 0)
         {
             hitColliders[0].GetComponent<EnemyHealth>().ChangeHealth(-damage);
-            hitColliders[0].GetComponent<EnemyKnockback>().Knockback(transform, knockbackForce, knockTime, stunTime);
+            hitColliders[0].GetComponent<EnemyKnockback>().Knockback(transform, knockbackForce, knockTime, Statsmanager.instance.knockbackStun);
         }
 
     }
