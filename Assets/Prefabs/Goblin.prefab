@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 528365640325401360}
   - component: {fileID: 3885640970178794887}
   - component: {fileID: 5942748796762900560}
-  - component: {fileID: 5569010644967730765}
+  - component: {fileID: 8602733629115253431}
   m_Layer: 7
   m_Name: Goblin
   m_TagString: Untagged
@@ -395,7 +395,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5569010644967730765
+--- !u!114 &8602733629115253431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f83ba35d2217f5439c2bc07d48b3464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPersistance
-  enemyID: 
+  persistenceID: 
 --- !u!1 &3321438139210817872
 GameObject:
   m_ObjectHideFlags: 0

@@ -373,6 +373,10 @@ PrefabInstance:
       propertyPath: enemyID
       value: DungeonLayout_2
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4941,6 +4945,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: f7443229dd455ab4e8366d73869419bf, type: 2}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_0
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.908978
@@ -6271,6 +6279,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: 43dfe7d0f62848f4da1e7d4f2aff0033, type: 2}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_3
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9579773
@@ -13120,6 +13132,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: 7786e06978b3c2d43b175082cedb5e8d, type: 2}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_1
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.41
@@ -13841,6 +13857,10 @@ PrefabInstance:
       propertyPath: enemyID
       value: DungeonLayout_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14187,6 +14207,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: 8de1af7685c5ec04e9e026571facc76d, type: 2}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_2
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.374503
@@ -14844,6 +14868,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: 41eb66f2a3e77014b9c020f64e939e8c, type: 2}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_5
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.24

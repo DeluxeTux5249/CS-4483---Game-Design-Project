@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_2
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (9)
@@ -244,6 +248,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -257,6 +265,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_6
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (12)
@@ -479,6 +491,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_12
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (22)
@@ -544,6 +560,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_5
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (10)
@@ -766,6 +786,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_20
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (18)
@@ -1190,6 +1214,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_8
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (14)
@@ -1391,6 +1419,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1412,6 +1444,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: 89ca5a688927bf44a99f4a086afe5cca, type: 2}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_25
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.07
@@ -1821,6 +1857,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1834,6 +1874,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_15
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (2)
@@ -1983,6 +2027,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_10
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (25)
@@ -2140,6 +2188,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: 23b4feba052f67449bb4a46c9fb88edb, type: 2}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_24
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.2
@@ -2277,6 +2329,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_7
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (13)
@@ -2481,6 +2537,10 @@ PrefabInstance:
     - target: {fileID: 4228488491789666269, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11945,6 +12005,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_1
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (16)
@@ -12002,6 +12066,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4236209780065322972, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
   m_PrefabInstance: {fileID: 770811385}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &796592365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1990808132411583401, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_Name
+      value: Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159314740989090286, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228488491789666269, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228488491789666269, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276610950050493281, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276610950050493281, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1490958473
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
 --- !u!1001 &815525667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12010,6 +12147,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_4
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (11)
@@ -12075,6 +12216,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_14
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (6)
@@ -12901,6 +13046,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_16
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (4)
@@ -20581,10 +20730,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golden Key 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5029458043168021394, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: 106e22a5e5ed85646b1b17af78914257, type: 2}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.58
@@ -20806,6 +20951,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_17
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (24)
@@ -21039,6 +21188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_13
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab
@@ -21344,6 +21497,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21413,6 +21570,10 @@ PrefabInstance:
     - target: {fileID: 4228488491789666269, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21599,6 +21760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_9
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (15)
@@ -22077,6 +22242,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_21
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (19)
@@ -22646,6 +22815,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_3
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (8)
@@ -22783,6 +22956,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_19
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (17)
@@ -22983,6 +23160,10 @@ PrefabInstance:
     - target: {fileID: 4228488491789666269, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23577,10 +23758,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golden Key 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5029458043168021394, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: 0db4b24996efb8a45bfc84ee36d9f22c, type: 2}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 48.2
@@ -23834,6 +24011,10 @@ PrefabInstance:
     - target: {fileID: 4228488491789666269, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24227,6 +24408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_11
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (20)
@@ -24292,6 +24477,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773890928410306287, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
+      propertyPath: persistenceID
+      value: dungeon2layout_18
+      objectReference: {fileID: 0}
     - target: {fileID: 3899640396461563353, guid: a218eebaefdee46a2baf344341ca4750, type: 3}
       propertyPath: m_Name
       value: CoinPickupPrefab (23)
@@ -24613,10 +24802,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golden Key 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5029458043168021394, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: 423a9bc66ba06d84fa9751d9897368ba, type: 2}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.8
