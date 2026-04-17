@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8557465915593087488}
   - component: {fileID: 839660014538215869}
   - component: {fileID: 5029458043168021394}
+  - component: {fileID: 6921804641096128526}
   m_Layer: 0
   m_Name: Golden Key
   m_TagString: Untagged
@@ -156,6 +157,19 @@ MonoBehaviour:
   quantity: 1
   spriteRenderer: {fileID: 0}
   collisionSound: {fileID: 8300000, guid: ab2ce192a849ef64b975bfae8b0a24ce, type: 3}
+--- !u!114 &6921804641096128526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131647853605496244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf819b4cff1d204da3b7ecae014de9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPersistence
+  persistenceID: 
 --- !u!1 &6396335252146470937
 GameObject:
   m_ObjectHideFlags: 0

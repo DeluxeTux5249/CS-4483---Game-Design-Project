@@ -373,6 +373,10 @@ PrefabInstance:
       propertyPath: enemyID
       value: DungeonLayout_2
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4773,6 +4777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golden Key
       objectReference: {fileID: 0}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_0
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.908978
@@ -6032,6 +6040,10 @@ PrefabInstance:
     - target: {fileID: 3131647853605496244, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_Name
       value: Golden Key (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_3
       objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12812,6 +12824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golden Key (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_1
+      objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.392803
@@ -13533,6 +13549,10 @@ PrefabInstance:
       propertyPath: enemyID
       value: DungeonLayout_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8602733629115253431, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13874,6 +13894,10 @@ PrefabInstance:
     - target: {fileID: 3131647853605496244, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_Name
       value: Golden Key (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_2
       objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14297,6 +14321,10 @@ PrefabInstance:
     - target: {fileID: 3131647853605496244, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_Name
       value: Golden Key (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921804641096128526, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
+      propertyPath: persistenceID
+      value: dungeonlayout_5
       objectReference: {fileID: 0}
     - target: {fileID: 8906868159218932342, guid: cb3276454204b4cd6a03b6bc2ab21aca, type: 3}
       propertyPath: m_LocalPosition.x

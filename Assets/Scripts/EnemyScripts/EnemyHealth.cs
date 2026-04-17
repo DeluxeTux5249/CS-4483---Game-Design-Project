@@ -44,7 +44,7 @@ public class EnemyHealth : MonoBehaviour
                     AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
                 // Save enemy death; health needn't be tracked
-                var isPersistantEnemy = GetComponent<EnemyPersistance>();
+                var isPersistantEnemy = GetComponent<EnemyPersistence>();
                 if (isPersistantEnemy) isPersistantEnemy.MarkAsDead();
 
                 Destroy(gameObject);
