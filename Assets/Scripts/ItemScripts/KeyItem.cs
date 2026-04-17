@@ -5,6 +5,6 @@ using UnityEngine;
 public class KeyItem : InventoryItemData
 {
     [Header("Key Info")]
-    public int keyValue = 1;
+    public string keyID;
     
 }

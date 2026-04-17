@@ -20,6 +20,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private int hotbarSize = 8;
     [SerializeField] private int inventoryRows = 3;
     [SerializeField] private int inventoryColumns = 8;
+    [SerializeField] private float interactRange = 1.5f;
 
     // main inventory storage list
     private readonly List<InventorySlot> slots = new List<InventorySlot>();
@@ -427,4 +428,45 @@ public class PlayerInventory : MonoBehaviour
         NotifyInventoryChanged();
         return true;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TryUnlockDoor();
+        }
+    }
+
+    void TryUnlockDoor()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactRange);
+    
+        foreach (Collider2D hit in hits)
+        {
+            LockedDoor door = hit.GetComponent<LockedDoor>();
+    
+            if (door != null)
+            {
+                InventorySlot selectedSlot = GetSelectedSlot();
+    
+                if (selectedSlot == null || selectedSlot.IsEmpty)
+                {
+                    door.TryUnlock(null);
+                    return;
+                }
+    
+                KeyItem key = selectedSlot.item as KeyItem;
+    
+                door.TryUnlock(key);
+    
+                if (key != null && key.keyID == door.requiredKeyID)
+                {
+                    RemoveFromSlot(SelectedSlotIndex, 1);
+                }
+    
+                return;
+            }
+        }
+}
+
  }
