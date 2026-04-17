@@ -13,7 +13,7 @@ public class EnemyPersistance : MonoBehaviour
             // could add default code to make all enemies persistent... not worth
         }
 
-        if (PlayerPrefs.GetInt(enemyID + "_IsDead", 0) == 1)
+        if (PlayerPrefs.GetInt(PlayerPrefsKey(), 0) == 1)
         {
             // If already dead, just remove them immediately
             gameObject.SetActive(false);
@@ -29,7 +29,7 @@ public class EnemyPersistance : MonoBehaviour
             return;
         }
 
-        PlayerPrefs.SetInt(enemyID + "_IsDead", 1);
+        PlayerPrefs.SetInt(PlayerPrefsKey(), 1);
         PlayerPrefs.Save();
         Debug.Log($"{enemyID} has been marked dead in playerprefs");
     }
@@ -37,7 +37,13 @@ public class EnemyPersistance : MonoBehaviour
     [ContextMenu("Reset Death State")]
     public void ResetState()
     {
-        PlayerPrefs.DeleteKey(enemyID + "_IsDead");
+        PlayerPrefs.DeleteKey(PlayerPrefsKey());
         Debug.Log($"{enemyID} state reset.");
+    }
+
+
+    private string PlayerPrefsKey()
+    {
+        return $"Enemy_{enemyID}_IsDead";
     }
 }

@@ -67,6 +67,11 @@ public class WorldItemPickup : MonoBehaviour
             }
 
             AudioSource.PlayClipAtPoint(collisionSound, transform.position);
+
+            // 
+            var isPersistentItem = GetComponent<ItemPersistance>();
+            if (isPersistentItem) isPersistentItem.MarkAsCollected();
+
             Destroy(gameObject);
         }
     }

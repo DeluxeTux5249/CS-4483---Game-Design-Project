@@ -39,7 +39,8 @@ public class PlayerCombat : MonoBehaviour
         {
             animator.SetBool("isAttacking", true);
             timer = Statsmanager.instance.attackSpeed;
-            swordPlayer.Play();
+
+            if (swordPlayer && swordPlayer.clip) swordPlayer.Play();
         }
     //    animator.SetBool("isAttacking", true);
     }

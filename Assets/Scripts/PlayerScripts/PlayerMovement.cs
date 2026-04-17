@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
         isDashing = true;
         rb.linearVelocity += moveDirection * Statsmanager.instance.speed * dashSpeed;
-        if (dashSoundPlayer) dashSoundPlayer.Play();
+        if (dashSoundPlayer & dashSoundPlayer.clip) dashSoundPlayer.Play();
         StartCoroutine(EndDashInSeconds(dashTime));
     }
 
