@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -15,43 +11,117 @@ public class DialogueTrigger : MonoBehaviour
     public GameObject dialogue_pop_up;
     public PlayerInput playerInput;
 
+    private TextMesh interactPrompt;
+    private InputAction interactAction;
+    private bool isPlayerInRange;
+    private bool isSubscribed;
+
     private void Start()
     {
         var player = GameObject.FindWithTag("Player");
+        CreateInteractPrompt();
+        SetPromptVisible(false);
+
+        if (player == null)
+        {
+            Debug.Log("Couldn't find a player");
+            return;
+        }
+
         playerInput = player.GetComponent<PlayerInput>();
         if (playerInput == null)
         {
             Debug.Log("Couldn't find a player");
+            return;
         }
+
+        interactAction = playerInput.actions.FindActionMap("Player").FindAction("Interact");
     }
 
     public void TriggerDialog(InputAction.CallbackContext context)
     {
-        dialogue_pop_up.SetActive(false);
-        FindAnyObjectByType<DialogueManager>().StartDialogue(tree.nodes[0]);       
+        if (!isPlayerInRange)
+        {
+            return;
+        }
+
+        if (dialogue_pop_up != null)
+        {
+            dialogue_pop_up.SetActive(false);
+        }
+
+        SetPromptVisible(false);
+        FindAnyObjectByType<DialogueManager>().StartDialogue(tree.nodes[0]);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (!collision.CompareTag("Player"))
         {
-            Debug.Log(playerInput.actions.FindActionMap("Player").FindAction("Interact"));
-            playerInput.actions.FindActionMap("Player").FindAction("Interact").performed += TriggerDialog;
+            return;
+        }
+
+        isPlayerInRange = true;
+        SetPromptVisible(true);
+
+        if (interactAction != null && !isSubscribed)
+        {
+            interactAction.performed += TriggerDialog;
+            isSubscribed = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (!collision.CompareTag("Player"))
         {
-            playerInput.actions.FindActionMap("Player").FindAction("Interact").performed -= TriggerDialog;
+            return;
+        }
+
+        isPlayerInRange = false;
+        SetPromptVisible(false);
+
+        if (dialogue_pop_up != null)
+        {
+            dialogue_pop_up.SetActive(false);
+        }
+
+        if (interactAction != null && isSubscribed)
+        {
+            interactAction.performed -= TriggerDialog;
+            isSubscribed = false;
         }
     }
 
     private void OnDestroy()
     {
-        // not needed; player is destroyed tween loads
-        //playerInput.actions.FindActionMap("Player").FindAction("Interact").performed -= TriggerDialog;
+        if (interactAction != null && isSubscribed)
+        {
+            interactAction.performed -= TriggerDialog;
+        }
     }
 
+    private void CreateInteractPrompt()
+    {
+        // create a simple text prompt above the NPC without needing extra UI setup
+        GameObject promptObject = new GameObject("InteractPrompt");
+        promptObject.transform.SetParent(transform);
+        promptObject.transform.localPosition = new Vector3(0f, 0.3f, 0f);
+
+        interactPrompt = promptObject.AddComponent<TextMesh>();
+        interactPrompt.text = "E";
+        interactPrompt.characterSize = 0.12f;
+        interactPrompt.fontSize = 28;
+        interactPrompt.anchor = TextAnchor.MiddleCenter;
+        interactPrompt.alignment = TextAlignment.Center;
+        interactPrompt.color = Color.white;
+    }
+
+    private void SetPromptVisible(bool visible)
+    {
+        if (interactPrompt != null)
+        {
+            interactPrompt.gameObject.SetActive(visible);
+        }
+    }
 }

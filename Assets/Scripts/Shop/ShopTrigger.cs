@@ -1,25 +1,55 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class ShopTrigger : MonoBehaviour
 {
-    public Button shopButton;
     public GameObject shopCanvas;
     public ShopManger shopManger;
+
     private PlayerMovement playerMovement;
+    private PlayerInput playerInput;
+    private InputAction interactAction;
+    private TextMesh interactPrompt;
+    private bool isPlayerInRange;
+    private bool isSubscribed;
+
+    private void Start()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            playerInput = player.GetComponent<PlayerInput>();
+        }
+
+        if (playerInput != null)
+        {
+            interactAction = playerInput.actions.FindActionMap("Player").FindAction("Interact");
+        }
+
+        CreateInteractPrompt();
+        SetPromptVisible(false);
+    }
 
     public void OpenShop()
     {
         shopCanvas.SetActive(true);
+        SetPromptVisible(false);
+
         if (playerMovement != null)
+        {
             playerMovement.canMove = false;
+        }
     }
 
     public void CloseShop()
     {
         shopCanvas.SetActive(false);
+        SetPromptVisible(isPlayerInRange && !IsPromptBlocked());
+
         if (playerMovement != null)
+        {
             playerMovement.canMove = true;
+        }
     }
 
     public void CloseShopTemp()
@@ -29,32 +59,49 @@ public class ShopTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (!collision.CompareTag("Player"))
         {
-            playerMovement = collision.GetComponent<PlayerMovement>();
-            shopButton.gameObject.SetActive(true);
-            shopButton.onClick.AddListener(this.OpenShop);
+            return;
+        }
+
+        playerMovement = collision.GetComponent<PlayerMovement>();
+        isPlayerInRange = true;
+        SetPromptVisible(!IsPromptBlocked());
+
+        if (interactAction != null && !isSubscribed)
+        {
+            interactAction.performed += HandleInteract;
+            isSubscribed = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (!collision.CompareTag("Player"))
         {
-            shopButton.onClick.RemoveListener(this.OpenShop);
-            shopButton.gameObject.SetActive(false);
-            playerMovement = null;
+            return;
         }
+
+        isPlayerInRange = false;
+        SetPromptVisible(false);
+
+        if (interactAction != null && isSubscribed)
+        {
+            interactAction.performed -= HandleInteract;
+            isSubscribed = false;
+        }
+
+        playerMovement = null;
     }
 
     public void gotoPreviewMode()
     {
-        shopButton.gameObject.SetActive(false);
+        SetPromptVisible(false);
     }
 
     public void gotoNormalMode()
     {
-        shopButton.gameObject.SetActive(true);
+        SetPromptVisible(isPlayerInRange && !IsPromptBlocked());
     }
 
     private void Update()
@@ -71,9 +118,65 @@ public class ShopTrigger : MonoBehaviour
 
         if (!Input.GetKeyDown(KeyCode.Escape)) return;
 
-        if (shopCanvas != null && shopCanvas.activeSelf)
-            CloseShop();
-        else if (shopManger != null && shopManger.isViewingZone)
+        if (shopManger != null && shopManger.isViewingZone)
             shopManger.CancelZoneView();
+    }
+
+    private void OnDestroy()
+    {
+        if (interactAction != null && isSubscribed)
+        {
+            interactAction.performed -= HandleInteract;
+        }
+    }
+
+    private void HandleInteract(InputAction.CallbackContext context)
+    {
+        if (!isPlayerInRange)
+        {
+            return;
+        }
+
+        if (shopManger != null && shopManger.isViewingZone)
+        {
+            return;
+        }
+
+        if (shopCanvas != null && shopCanvas.activeSelf)
+        {
+            CloseShop();
+            return;
+        }
+
+        OpenShop();
+    }
+
+    private bool IsPromptBlocked()
+    {
+        return (shopCanvas != null && shopCanvas.activeSelf)
+            || (shopManger != null && shopManger.isViewingZone);
+    }
+
+    private void CreateInteractPrompt()
+    {
+        GameObject promptObject = new GameObject("InteractPrompt");
+        promptObject.transform.SetParent(transform);
+        promptObject.transform.localPosition = new Vector3(0f, -0.62f, 0f);
+
+        interactPrompt = promptObject.AddComponent<TextMesh>();
+        interactPrompt.text = "E";
+        interactPrompt.characterSize = 0.12f;
+        interactPrompt.fontSize = 28;
+        interactPrompt.anchor = TextAnchor.MiddleCenter;
+        interactPrompt.alignment = TextAlignment.Center;
+        interactPrompt.color = Color.white;
+    }
+
+    private void SetPromptVisible(bool visible)
+    {
+        if (interactPrompt != null)
+        {
+            interactPrompt.gameObject.SetActive(visible);
+        }
     }
 }
