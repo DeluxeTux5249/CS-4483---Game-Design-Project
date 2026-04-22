@@ -19,6 +19,12 @@ public class DungeonChest : MonoBehaviour
     [SerializeField] private string trapPrefabResourcePath;
     [SerializeField] private Color openedTint = new Color(0.75f, 0.75f, 0.75f, 1f);
 
+    [SerializeField] private AudioClip coinSound;
+    [SerializeField] private AudioClip weaponSound;
+    [SerializeField] private AudioClip keyItemSound;
+    [SerializeField] private AudioClip trapSound;
+    [SerializeField] private AudioSource audioPlayer;
+
     private bool isOpened;
     private SpriteRenderer spriteRenderer;
     private Color closedTint = Color.white;
@@ -133,30 +139,41 @@ public class DungeonChest : MonoBehaviour
         if (!playerInventory) return;
 
 
+        AudioClip soundChoice = null;
+
         switch (rewardType)
         {
             case ChestRewardType.Coins:
                 GiveReward(playerInventory, rewardItem, rewardItemResourcePath, rewardAmount);
                 Debug.Log($"{name} opened: awarded {rewardAmount} coins.");
+                soundChoice = coinSound;
                 break;
 
             case ChestRewardType.Weapon:
                 GiveReward(playerInventory, rewardItem, rewardItemResourcePath, rewardAmount);
                 Debug.Log($"{name} opened: awarded weapon item.");
+                soundChoice = weaponSound;
                 break;
 
             case ChestRewardType.KeyItem:
                 GiveReward(playerInventory, rewardItem, rewardItemResourcePath, rewardAmount);
                 Debug.Log($"{name} opened: awarded key item.");
+                soundChoice = keyItemSound;
                 break;
 
             case ChestRewardType.Trap:
                 SpawnTrap();
                 Debug.Log($"{name} opened: trap activated.");
+                soundChoice = trapSound;
                 break;
         }
 
         gameObject.GetComponent<ChestSaver>().MarkAsOpen();
+
+        if (soundChoice != null && audioPlayer != null)
+        {
+            audioPlayer.PlayOneShot(soundChoice);
+        }    
 
     }
 

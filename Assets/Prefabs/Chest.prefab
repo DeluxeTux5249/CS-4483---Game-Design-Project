@@ -112,6 +112,11 @@ MonoBehaviour:
   rewardItemResourcePath: 
   trapPrefabResourcePath: 
   openedTint: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  coinSound: {fileID: 8300000, guid: ab2ce192a849ef64b975bfae8b0a24ce, type: 3}
+  weaponSound: {fileID: 8300000, guid: d96d44c9fcf53504e996c9dbf25f8dc2, type: 3}
+  keyItemSound: {fileID: 8300000, guid: ab2ce192a849ef64b975bfae8b0a24ce, type: 3}
+  trapSound: {fileID: 8300000, guid: 956baef1eb2aa1c45a7f19b81b6e22aa, type: 3}
+  audioPlayer: {fileID: 9011453388138672788}
 --- !u!82 &9011453388138672788
 AudioSource:
   m_ObjectHideFlags: 0
