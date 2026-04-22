@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 6551214076146018883}
   - component: {fileID: 2388483607135229851}
   - component: {fileID: 4441774068194911668}
+  - component: {fileID: 819277740831257313}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -146,13 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6833467bd15a48249a2fd6346c28e7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
   rb: {fileID: 5448599613973203269}
   dashSpeed: 2
   dashTime: 0.1
   canMove: 1
   playerCombat: {fileID: 3085409574772644072}
   dashSoundPlayer: {fileID: 4441774068194911668}
+  statsui: {fileID: 0}
 --- !u!114 &8564447424052734776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc328784aa062e845960850003763aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
-  maxHealth: 10
   currentHealth: 10
   healthBar: {fileID: 1624790388982132797}
 --- !u!114 &3085409574772644072
@@ -434,7 +434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   animator: {fileID: 936077995261625014}
-  cooldown: 1
   knockbackForce: 0
   attackPoint: {fileID: 8058714180205585939}
   weaponRange: 1
@@ -443,7 +442,6 @@ MonoBehaviour:
     m_Bits: 128
   baseDamage: 1
   damage: 1
-  stunTime: 0
   knockTime: 0.5
   swordPlayer: {fileID: 2388483607135229851}
 --- !u!114 &6551214076146018883
@@ -461,6 +459,7 @@ MonoBehaviour:
   hotbarSize: 8
   inventoryRows: 3
   inventoryColumns: 8
+  interactRange: 1.5
 --- !u!82 &2388483607135229851
 AudioSource:
   m_ObjectHideFlags: 0
@@ -655,6 +654,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &819277740831257313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838194074359655376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687ce4ef3d0919c45b35affb571c5778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPersistence
+  sceneString: 
+  location: {x: 0, y: 0}
+  inventory: {fileID: 6551214076146018883}
+  playerHealth: {fileID: 8542484382342528529}
 --- !u!1001 &6198498239362825209
 PrefabInstance:
   m_ObjectHideFlags: 0

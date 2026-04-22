@@ -71,11 +71,12 @@ public class PauseMenu : MonoBehaviour
     public void SaveGame()
     {
         Debug.Log("Logic for Save TDB");
-        // logic tbd
+        GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerPersistence>().SaveLocation();
     }
 
     public void QuitGameToMenu()
     {
+        SaveGame();
         SceneManager.LoadScene("Title");
     }
 

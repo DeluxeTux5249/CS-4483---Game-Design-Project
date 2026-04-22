@@ -1,0 +1,53 @@
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+// this prob could've been a base persistence, but it was complicated due to there being multiple distinct players across scenes
+public class PlayerPersistence : MonoBehaviour
+{
+    [SerializeField] protected PlayerInventory inventory;
+    [SerializeField] protected HealthTracker playerHealth;
+
+    private string lastSceneKey = "LastPlayerScene";
+    private string lastXLocationKey = "LastPlayerScene";
+    private string lastYLocationKey = "LastPlayerScene";
+
+
+    public void SavePlayer()
+    {
+        SaveLocation();
+        SaveInventory();
+        SaveHealth();
+    }
+
+    public void SaveLocation()
+    {
+        var sceneName = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString(lastSceneKey, sceneName);
+        PlayerPrefs.SetFloat(lastXLocationKey, transform.position.x);
+        PlayerPrefs.SetFloat(lastYLocationKey, transform.position.y);
+    }
+
+    public void SaveInventory()
+    {
+        // update playerprefs
+    }
+
+    public void SaveHealth()
+    {
+        // save health data
+    }
+
+    public void SaveUpgradeData()
+    {
+        // save upgrade stuff
+    }
+
+    [ContextMenu("Reset Player Save Data")]
+    public void ResetPlayerData()
+    {
+        PlayerPrefs.DeleteKey(lastSceneKey);
+        PlayerPrefs.DeleteKey(lastXLocationKey);
+        PlayerPrefs.DeleteKey(lastYLocationKey);
+    }
+}

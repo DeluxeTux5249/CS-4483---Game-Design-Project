@@ -6,7 +6,16 @@ public class GameManager : MonoBehaviour
     public static void LoadScene(string sceneToLoad)
     {
         // Load the target scene
-        SceneManager.LoadScene(sceneToLoad);
+        if (PlayerPrefs.HasKey("LastPlayerScene"))
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetString("LastPlayerScene"));
+
+        } else
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
+
+            
     }
 
     public static void QuitGame() { 

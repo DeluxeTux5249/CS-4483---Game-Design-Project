@@ -13890,6 +13890,11 @@ MonoBehaviour:
   rewardItemResourcePath: 
   trapPrefabResourcePath: 
   openedTint: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  coinSound: {fileID: 0}
+  weaponSound: {fileID: 0}
+  keyItemSound: {fileID: 0}
+  trapSound: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!114 &1673147047
 MonoBehaviour:
   m_ObjectHideFlags: 0
