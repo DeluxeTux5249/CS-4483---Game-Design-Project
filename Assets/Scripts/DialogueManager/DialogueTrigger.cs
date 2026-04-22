@@ -121,7 +121,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (interactPrompt != null)
         {
-            interactPrompt.gameObject.SetActive(visible);
+            //interactPrompt.gameObject.SetActive(visible);
         }
     }
 }

@@ -1,7 +1,5 @@
 using UnityEngine;
 
-using UnityEngine;
-
 public abstract class BasePersistence : MonoBehaviour
 {
     [Header("Use the format 'scene_number'")]
@@ -21,7 +19,7 @@ public abstract class BasePersistence : MonoBehaviour
         }
     }
 
-    public void SetState(bool isActive)
+    protected void SetState(bool isActive)
     {
         if (string.IsNullOrEmpty(persistenceID)) return;
 

@@ -114,13 +114,24 @@ public class DungeonChest : MonoBehaviour
         }
     }
 
-    private void OpenChest(PlayerInventory playerInventory)
+    public void OpenChest(PlayerInventory playerInventory)
     {
         // opened chests can only be used once
         isOpened = true;
         playerInRange = null;
         SetPromptVisible(false);
         ApplyOpenedVisual();
+
+        // disable the trigger so the chest cannot be reopened
+        Collider2D chestCollider = GetComponent<Collider2D>();
+        if (chestCollider != null)
+        {
+            chestCollider.enabled = false;
+        }
+
+        // added this for ease of chest reloading (i.e. after saving)
+        if (!playerInventory) return;
+
 
         switch (rewardType)
         {
@@ -145,12 +156,8 @@ public class DungeonChest : MonoBehaviour
                 break;
         }
 
-        // disable the trigger so the chest cannot be reopened
-        Collider2D chestCollider = GetComponent<Collider2D>();
-        if (chestCollider != null)
-        {
-            chestCollider.enabled = false;
-        }
+        gameObject.GetComponent<ChestSaver>().MarkAsOpen();
+
     }
 
     private void GiveReward(PlayerInventory playerInventory, InventoryItemData directItem, string resourcePath, int quantity)
