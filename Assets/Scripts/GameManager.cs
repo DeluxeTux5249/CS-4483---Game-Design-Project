@@ -13,4 +13,14 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public static void clearSaveData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public static void UnloadScene(string sceneToUnload)
+    {
+        SceneManager.UnloadSceneAsync(sceneToUnload);
+    }
+
 }

@@ -18,12 +18,15 @@ public class PauseMenu : MonoBehaviour
         }
         else 
         {
+            playerInput.SwitchCurrentActionMap("Player");
+
+            Time.timeScale = 1.0f;
 
             // should work, doesn't 
-//            playerInput.actions.FindActionMap("Player").FindAction("PauseGame").performed += PauseGame;
-  //          playerInput.actions.FindActionMap("UI").FindAction("UnpauseGame").performed += ResumeGame;
+            //            playerInput.actions.FindActionMap("Player").FindAction("PauseGame").performed += PauseGame;
+            //          playerInput.actions.FindActionMap("UI").FindAction("UnpauseGame").performed += ResumeGame;
         }
-            
+
     }
 
     // stops game world from running
