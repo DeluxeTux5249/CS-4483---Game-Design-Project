@@ -9,8 +9,8 @@ public class PlayerPersistence : MonoBehaviour
     [SerializeField] protected HealthTracker playerHealth;
 
     private string lastSceneKey = "LastPlayerScene";
-    private string lastXLocationKey = "LastPlayerScene";
-    private string lastYLocationKey = "LastPlayerScene";
+    private string lastXLocationKey = "SpawnX";
+    private string lastYLocationKey = "SpawnY";
 
 
     public void SavePlayer()
@@ -23,6 +23,7 @@ public class PlayerPersistence : MonoBehaviour
     public void SaveLocation()
     {
         var sceneName = SceneManager.GetActiveScene().name;
+        Debug.Log($"location: {sceneName}");
         PlayerPrefs.SetString(lastSceneKey, sceneName);
         PlayerPrefs.SetFloat(lastXLocationKey, transform.position.x);
         PlayerPrefs.SetFloat(lastYLocationKey, transform.position.y);
@@ -30,7 +31,7 @@ public class PlayerPersistence : MonoBehaviour
 
     public void SaveInventory()
     {
-        // update playerprefs
+        inventory.HardSave();
     }
 
     public void SaveHealth()
@@ -44,7 +45,7 @@ public class PlayerPersistence : MonoBehaviour
     }
 
     [ContextMenu("Reset Player Save Data")]
-    public void ResetPlayerData()
+    private void ResetPlayerData()
     {
         PlayerPrefs.DeleteKey(lastSceneKey);
         PlayerPrefs.DeleteKey(lastXLocationKey);

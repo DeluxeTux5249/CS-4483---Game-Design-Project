@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,17 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static void LoadScene(string sceneToLoad)
     {
-        // Load the target scene
-        if (PlayerPrefs.HasKey("LastPlayerScene"))
-        {
-            SceneManager.LoadScene(PlayerPrefs.GetString("LastPlayerScene"));
-
-        } else
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
-
-            
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public static void QuitGame() { 
@@ -25,6 +16,21 @@ public class GameManager : MonoBehaviour
     public static void clearSaveData()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public static void LoadProgress(string defaultScene)
+    {
+        // Load the target scene
+        if (PlayerPrefs.HasKey("LastPlayerScene"))
+        {
+            LoadScene(PlayerPrefs.GetString("LastPlayerScene"));
+        }
+
+        else
+        {
+            LoadScene(defaultScene);
+        }
+
     }
 
     public static void UnloadScene(string sceneToUnload)

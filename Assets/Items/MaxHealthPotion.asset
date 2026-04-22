@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50e8544006987419d86b6461bf839f45, type: 3}
-  m_Name: Strength Potion
+  m_Name: MaxHealthPotion
   m_EditorClassIdentifier: Assembly-CSharp::ConsumableItem
-  itemName: Strength Potion
+  itemName: Max Health Potion
   description: 
-  icon: {fileID: -7991856047629221812, guid: a982ade6c62e3472883df2d3b26c059e, type: 3}
+  icon: {fileID: -8720278323364626428, guid: a982ade6c62e3472883df2d3b26c059e, type: 3}
   maxStackSize: 99
   pickupPrefab: {fileID: 0}
-  effectType: 1
-  amount: 3
+  effectType: 0
+  amount: 1
   duration: 15

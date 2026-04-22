@@ -460,6 +460,24 @@ MonoBehaviour:
   inventoryRows: 3
   inventoryColumns: 8
   interactRange: 1.5
+  coinItemScriptable: {fileID: 11400000, guid: bfe5b4c8c7bc4482c859b59f64f497b7, type: 2}
+  ironSwordScriptable: {fileID: 11400000, guid: a1ea88814dea04bbe9b1e4cccc075295, type: 2}
+  steakScriptable: {fileID: 11400000, guid: 0368a02c7c16944428eafcdc8f9331c3, type: 2}
+  healthPotionScriptable: {fileID: 11400000, guid: 35ca2c3f8504e4a4b843e597e9d11451, type: 2}
+  maxHealthPotionScriptable: {fileID: 11400000, guid: 4e550ff3575eaa242855bffdf81c656b, type: 2}
+  strengthPotionScriptable: {fileID: 11400000, guid: 213ac54c709e84a119a871f6d3b5e02b, type: 2}
+  finalDungeonKeyScriptable: {fileID: 11400000, guid: e112a2b77bd384fe1887a6a6ef82fd02, type: 2}
+  goldenKeyScriptable: {fileID: 11400000, guid: a0b5cb2baf10b4f0c8e7d0086364816c, type: 2}
+  d1k1Scriptable: {fileID: 11400000, guid: 8de1af7685c5ec04e9e026571facc76d, type: 2}
+  d1k2Scriptable: {fileID: 11400000, guid: 7786e06978b3c2d43b175082cedb5e8d, type: 2}
+  d1k3Scriptable: {fileID: 11400000, guid: 41eb66f2a3e77014b9c020f64e939e8c, type: 2}
+  d1k4Scriptable: {fileID: 11400000, guid: 43dfe7d0f62848f4da1e7d4f2aff0033, type: 2}
+  d1k5Scriptable: {fileID: 11400000, guid: f7443229dd455ab4e8366d73869419bf, type: 2}
+  d2k1Scriptable: {fileID: 11400000, guid: 106e22a5e5ed85646b1b17af78914257, type: 2}
+  d2k2Scriptable: {fileID: 11400000, guid: 423a9bc66ba06d84fa9751d9897368ba, type: 2}
+  d2k3Scriptable: {fileID: 11400000, guid: 89ca5a688927bf44a99f4a086afe5cca, type: 2}
+  d2k4Scriptable: {fileID: 11400000, guid: 0db4b24996efb8a45bfc84ee36d9f22c, type: 2}
+  d2k5Scriptable: {fileID: 11400000, guid: 23b4feba052f67449bb4a46c9fb88edb, type: 2}
 --- !u!82 &2388483607135229851
 AudioSource:
   m_ObjectHideFlags: 0
@@ -666,8 +684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687ce4ef3d0919c45b35affb571c5778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPersistence
-  sceneString: 
-  location: {x: 0, y: 0}
   inventory: {fileID: 6551214076146018883}
   playerHealth: {fileID: 8542484382342528529}
 --- !u!1001 &6198498239362825209

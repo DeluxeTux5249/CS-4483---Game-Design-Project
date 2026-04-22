@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -23,13 +25,38 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private float interactRange = 1.5f;
 
     // main inventory storage list
-    private readonly List<InventorySlot> slots = new List<InventorySlot>();
+    private List<InventorySlot> slots = new List<InventorySlot>();
     // reference to the UI that displays this inventory
     private InventoryUI inventoryUI;
 
     // events used so the UI can update whenever something changes
     public event Action InventoryChanged;
     public event Action<int> SelectedSlotChanged;
+
+
+    [Header("Item Scriptable Objects - not scallable, but it works")]
+    [SerializeField] private CoinItem coinItemScriptable;
+    [SerializeField] private WeaponItem ironSwordScriptable;
+
+    [Header("Consumables")]
+    [SerializeField] private ConsumableItem steakScriptable;
+    [SerializeField] private ConsumableItem healthPotionScriptable;
+    [SerializeField] private ConsumableItem maxHealthPotionScriptable;
+    [SerializeField] private ConsumableItem strengthPotionScriptable;
+
+    [Header("Keys")]
+    [SerializeField] private KeyItem finalDungeonKeyScriptable;
+    [SerializeField] private KeyItem goldenKeyScriptable;
+    [SerializeField] private KeyItem d1k1Scriptable;
+    [SerializeField] private KeyItem d1k2Scriptable;
+    [SerializeField] private KeyItem d1k3Scriptable;
+    [SerializeField] private KeyItem d1k4Scriptable;
+    [SerializeField] private KeyItem d1k5Scriptable;
+    [SerializeField] private KeyItem d2k1Scriptable;
+    [SerializeField] private KeyItem d2k2Scriptable;
+    [SerializeField] private KeyItem d2k3Scriptable;
+    [SerializeField] private KeyItem d2k4Scriptable;
+    [SerializeField] private KeyItem d2k5Scriptable;
 
     public IReadOnlyList<InventorySlot> Slots
     {
@@ -375,6 +402,7 @@ public class PlayerInventory : MonoBehaviour
         // do nothing until a previous scene has actually stored inventory data
         if (!hasSavedInventory)
         {
+            HardLoad();
             return;
         }
 
@@ -469,4 +497,109 @@ public class PlayerInventory : MonoBehaviour
         }
 }
 
- }
+
+
+    // saves slots to player prefs
+    public void HardSave()
+    {
+        string items_saved = "";
+
+        foreach (var slot in savedSlots)
+        {
+            if (slot == null || slot.item == null) continue;
+            string itemName = $"{slot.item.itemName}";
+            int itemAmount = slot.quantity;
+            PlayerPrefs.SetInt(itemName, itemAmount);
+            items_saved += $"{itemName}_";
+        }
+
+        Debug.Log(items_saved);
+        PlayerPrefs.SetString("Inventory_Keys", items_saved);
+
+    }
+    // Need to figure out how to load properly 
+    public void HardLoad()
+    {
+        Debug.Log("loading");
+        string keyString = PlayerPrefs.GetString("Inventory_Keys");
+        List<string> keys = keyString.Split('_').ToList<string>();
+        keys.Remove("");
+
+        foreach (string key in keys)
+        {
+            int quanity = PlayerPrefs.GetInt(key);
+            Debug.Log(key);
+            InventoryItemData newItem = longSwitchStatementSorry(key);
+
+            // this case ain't doing it's job
+
+
+            Debug.Log(newItem == null);
+            AddItem(newItem, quanity);
+        }
+    }
+
+    private InventoryItemData longSwitchStatementSorry(string key)
+    {
+        switch (key)
+        {
+            case "Coin":
+                return coinItemScriptable;
+
+            case "Iron Sword":
+                return ironSwordScriptable;
+
+            // consumables
+            case "Steak":
+                return steakScriptable;
+
+            case "Health Potion":
+                return healthPotionScriptable;
+
+            case "Max Health Potion":
+                return maxHealthPotionScriptable;
+
+
+            // keys
+            case "Golden Key":
+                return goldenKeyScriptable;
+
+            case "Exit Key":
+                return finalDungeonKeyScriptable;
+
+            case "Dungeon1Key1":
+                return d1k1Scriptable;
+
+            case "Dungeon1Key2":
+                return d1k2Scriptable;
+
+            case "Dungeon1Key3":
+                return d1k3Scriptable;
+
+            case "Dungeon1Key4":
+                return d1k4Scriptable;
+
+            case "Dungeon1Key5":
+                return d1k5Scriptable;
+
+            case "Dungeon2Key1":
+                return d2k1Scriptable;
+
+            case "Dungeon2Key2":
+                return d2k2Scriptable;
+
+            case "Dungeon2Key3":
+                return d2k3Scriptable;
+
+            case "Dungeon2Key4":
+                return d2k4Scriptable;
+
+            case "Dungeon2Key5":
+                return d2k5Scriptable;
+
+            default:
+                return null;
+        }
+
+    }
+}

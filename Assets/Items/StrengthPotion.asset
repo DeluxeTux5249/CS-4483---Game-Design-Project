@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eac63141e2c044d1d9f39cc69a580de8, type: 3}
-  m_Name: Golden Key
-  m_EditorClassIdentifier: Assembly-CSharp::KeyItem
-  itemName: Golden Key
+  m_Script: {fileID: 11500000, guid: 50e8544006987419d86b6461bf839f45, type: 3}
+  m_Name: StrengthPotion
+  m_EditorClassIdentifier: Assembly-CSharp::ConsumableItem
+  itemName: Strength Potion
   description: 
-  icon: {fileID: 3275407576765064038, guid: 465fcf043936a1f479d943460f0fe606, type: 3}
+  icon: {fileID: -7991856047629221812, guid: a982ade6c62e3472883df2d3b26c059e, type: 3}
   maxStackSize: 99
   pickupPrefab: {fileID: 0}
-  keyValue: 1
+  effectType: 1
+  amount: 3
+  duration: 15

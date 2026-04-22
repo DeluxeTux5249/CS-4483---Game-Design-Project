@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f13d4190c61e349cab869929b60dd8ce, type: 3}
-  m_Name: Iron Sword
+  m_Name: IronSword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponItem
   itemName: Iron Sword
   description: It's kinda rusty
