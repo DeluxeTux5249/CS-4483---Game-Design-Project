@@ -5,15 +5,17 @@ using UnityEngine.SceneManagement;
 public class HealthTracker : MonoBehaviour
 {
 
-    [SerializeField] private int currentHealth = 10;
+    [SerializeField] public int currentHealth = 10;
     [SerializeField] private HealthBar healthBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentHealth = Statsmanager.instance.maxHealth;
+        var isPersistant = GetComponent<PlayerPersistence>();
+        if (isPersistant && PlayerPrefs.HasKey("PlayerHealth")) currentHealth = PlayerPrefs.GetInt("PlayerHealth");
+        else currentHealth = Statsmanager.instance.maxHealth;
 
-        if (healthBar != null )
+        if (healthBar != null)
         {
             healthBar.SetMaxHealth(Statsmanager.instance.maxHealth);
             healthBar.SetHealth(currentHealth);

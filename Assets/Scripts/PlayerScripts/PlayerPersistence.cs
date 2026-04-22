@@ -36,7 +36,7 @@ public class PlayerPersistence : MonoBehaviour
 
     public void SaveHealth()
     {
-        // save health data
+        PlayerPrefs.SetInt("PlayerHealth", playerHealth.currentHealth);
     }
 
     public void SaveUpgradeData()
