@@ -1279,15 +1279,17 @@ MonoBehaviour:
 
     - E to Interact with objects
 
-    - I to Open Inventory
+    - I to expand inventory
 
     -
-    Q to consume an inventory item
+    Num Keys to select inventory items
+
+    - Q to consume an inventory item
 
 
-    Summary: Goblin hoards have been ravaging
-    the land, and strange dungeons seem to be the source. Protect the village. Slay
-    the monsters.'
+    Summary:
+    Goblin hoards have been ravaging the land, and strange dungeons seem to be the
+    source. Protect the village. Slay the monsters.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
