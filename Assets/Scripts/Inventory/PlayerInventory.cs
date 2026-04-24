@@ -13,7 +13,7 @@ public class PlayerInventory : MonoBehaviour
         public int quantity;
     }
 
-    private static readonly List<SavedSlotData> savedSlots = new List<SavedSlotData>();
+    private static List<SavedSlotData> savedSlots = new List<SavedSlotData>();
     private static int savedSelectedSlotIndex;
     private static bool hasSavedInventory;
 
@@ -600,5 +600,10 @@ public class PlayerInventory : MonoBehaviour
                 return null;
         }
 
+    }
+
+    public static void dumpInventory()
+    {
+        savedSlots.Clear();
     }
 }

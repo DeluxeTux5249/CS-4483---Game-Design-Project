@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public static void clearSaveData()
     {
         PlayerPrefs.DeleteAll();
+        PlayerInventory.dumpInventory();
     }
 
     public static void LoadProgress(string defaultScene)
