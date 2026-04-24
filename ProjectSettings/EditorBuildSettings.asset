@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RandomPuzzleBuild.unity
     guid: 22fc28f1cea6f5c48b2bf8b550f76075
+  - enabled: 1
+    path: Assets/Scenes/DungeonCompleteScene.unity
+    guid: cae70d306fc033d41b0674079eccea9d
+  - enabled: 1
+    path: Assets/Scenes/Dungeon2Layout.unity
+    guid: 155a95f62d15aee48b46d5851af7cd09
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

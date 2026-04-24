@@ -106,22 +106,23 @@ public class DialogueTrigger : MonoBehaviour
         // create a simple text prompt above the NPC without needing extra UI setup
         GameObject promptObject = new GameObject("InteractPrompt");
         promptObject.transform.SetParent(transform);
-        promptObject.transform.localPosition = new Vector3(0f, 0.3f, 0f);
+        promptObject.transform.localPosition = new Vector3(0f, 0.3f, 100f);
 
         interactPrompt = promptObject.AddComponent<TextMesh>();
-        interactPrompt.text = "E";
+        interactPrompt.text = "Press E";
         interactPrompt.characterSize = 0.12f;
         interactPrompt.fontSize = 28;
         interactPrompt.anchor = TextAnchor.MiddleCenter;
         interactPrompt.alignment = TextAlignment.Center;
         interactPrompt.color = Color.white;
+        
     }
 
     private void SetPromptVisible(bool visible)
     {
         if (interactPrompt != null)
         {
-            //interactPrompt.gameObject.SetActive(visible);
+            interactPrompt.gameObject.SetActive(visible);
         }
     }
 }

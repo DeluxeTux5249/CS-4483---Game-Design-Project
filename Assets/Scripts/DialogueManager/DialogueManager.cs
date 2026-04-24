@@ -7,6 +7,7 @@ using DG.Tweening;
 using XNode;
 using UnityEngine.InputSystem;
 
+// The following code, and related assets are based upon an example from CS 4482, 2025
 public class DialogueManager : MonoBehaviour
 {
     public TMP_Text nameText;

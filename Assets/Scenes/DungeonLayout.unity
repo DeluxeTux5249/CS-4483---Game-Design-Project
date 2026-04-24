@@ -3637,6 +3637,7 @@ GameObject:
   - component: {fileID: 367099935}
   - component: {fileID: 367099934}
   - component: {fileID: 367099936}
+  - component: {fileID: 367099937}
   m_Layer: 0
   m_Name: Door1
   m_TagString: Untagged
@@ -3879,6 +3880,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &367099937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367099931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caedf2e4bdb869c4ea73f94f381f3209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorPersistence
+  persistenceID: dungeonlayout_1
 --- !u!1 &370592497
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,6 +5091,7 @@ GameObject:
   - component: {fileID: 765379678}
   - component: {fileID: 765379677}
   - component: {fileID: 765379679}
+  - component: {fileID: 765379680}
   m_Layer: 0
   m_Name: Door3
   m_TagString: Untagged
@@ -5319,6 +5334,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &765379680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765379674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caedf2e4bdb869c4ea73f94f381f3209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorPersistence
+  persistenceID: dungeonlayout_3
 --- !u!1 &778526879
 GameObject:
   m_ObjectHideFlags: 0
@@ -6624,6 +6652,7 @@ GameObject:
   - component: {fileID: 1029060210}
   - component: {fileID: 1029060209}
   - component: {fileID: 1029060211}
+  - component: {fileID: 1029060212}
   m_Layer: 0
   m_Name: Door4
   m_TagString: Untagged
@@ -6866,6 +6895,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1029060212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029060206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caedf2e4bdb869c4ea73f94f381f3209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorPersistence
+  persistenceID: dungeonlayout_4
 --- !u!1 &1086672287
 GameObject:
   m_ObjectHideFlags: 0
@@ -14538,6 +14580,7 @@ GameObject:
   - component: {fileID: 2073193411}
   - component: {fileID: 2073193410}
   - component: {fileID: 2073193412}
+  - component: {fileID: 2073193413}
   m_Layer: 0
   m_Name: Door5
   m_TagString: Untagged
@@ -14780,6 +14823,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2073193413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073193407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caedf2e4bdb869c4ea73f94f381f3209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorPersistence
+  persistenceID: dungeonlayout_5
 --- !u!1 &2110182287
 GameObject:
   m_ObjectHideFlags: 0
@@ -14793,6 +14849,7 @@ GameObject:
   - component: {fileID: 2110182291}
   - component: {fileID: 2110182290}
   - component: {fileID: 2110182292}
+  - component: {fileID: 2110182293}
   m_Layer: 0
   m_Name: Door2
   m_TagString: Untagged
@@ -15035,6 +15092,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2110182293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110182287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caedf2e4bdb869c4ea73f94f381f3209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorPersistence
+  persistenceID: dungeonlayout_2
 --- !u!114 &2116914760 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2217974994027464772, guid: 2ff55302dd634b7418fe423a36c4ff11, type: 3}

@@ -161,10 +161,10 @@ public class ShopTrigger : MonoBehaviour
     {
         GameObject promptObject = new GameObject("InteractPrompt");
         promptObject.transform.SetParent(transform);
-        promptObject.transform.localPosition = new Vector3(0f, -0.62f, 0f);
+        promptObject.transform.localPosition = new Vector3(0f, -0.62f, 100f);
 
         interactPrompt = promptObject.AddComponent<TextMesh>();
-        interactPrompt.text = "E";
+        interactPrompt.text = "Press E";
         interactPrompt.characterSize = 0.12f;
         interactPrompt.fontSize = 28;
         interactPrompt.anchor = TextAnchor.MiddleCenter;

@@ -31,6 +31,8 @@ public class LockedDoor : MonoBehaviour
     void Unlock()
     {
         isUnlocked = true;
+        var isPersistant = GetComponent<DoorPersistence>();
+        if (isPersistant != null) isPersistant.MarkAsOpen();
 
         if (audioSource && unlockSound)
             audioSource.PlayOneShot(unlockSound);
